@@ -1,0 +1,994 @@
+/* Theme and variables
+   Keep this block identical to the :root in main.css (same names, same values),
+   so every theme works in both user mode and manager mode. */
+:root {
+    color-scheme: dark; /* makes native scrollbars, inputs and form controls match the theme (use "light" in light themes) */
+    --font-family: Consolas, Menlo, Monaco, "Liberation Mono", "Lucida Console", monospace; /* Global Font Family */
+    --background: #0D0F12;
+    --body-bg: #141414;
+    --surface: #16191E; /* lighter background to separate the objects */
+    --surface-light: #1D2127; /* even lighter background to separate the objects */
+    --surface-hover: #22252A; /* background when we hover */
+    --accent: #E50914; /* deep red highlight, often use for navigation bar */
+    --accent-glow: color-mix(in srgb, var(--accent) 15%, transparent); /* lighter transparent accent highlight */
+    --accent-border: color-mix(in srgb, var(--accent) 30%, transparent); /* transparent accent for soft borders */
+    --accent-hover: #C90812; /* solid accent button when hover */
+    --danger: #FF6B6B; /* warning red color */
+    --danger-glow: color-mix(in srgb, var(--danger) 12%, transparent); /* transparent danger background (error boxes) */
+    --danger-border: color-mix(in srgb, var(--danger) 35%, transparent); /* transparent danger border */
+    --text-on-danger: #0D0F12; /* text placed on top of a solid danger-colored background */
+    --overlay-backdrop: rgba(0, 0, 0, 0.65); /* dimmed background behind modals and popups */
+    --success: #4ADE80; /* successful color */
+    --success-glow: color-mix(in srgb, var(--success) 12%, transparent); /* transparent success background (alerts, badges) */
+    --success-border: color-mix(in srgb, var(--success) 35%, transparent); /* transparent success border */
+    --rating: #F5C542; /* star/rating gold color */
+    --text-on-success: #0D0F12; /* text placed on top of a solid success-colored background */
+    --seat-vip: #F4C95D; /* VIP seat color (gold) */
+    --seat-discount: #5EB6F2; /* discount seat color (sky blue) */
+    --seat-couple: #E88AC7; /* couple seat color (pink) */
+    --visa-blue: #1A1F71; /* VISA brand blue (brand colors stay the same in every theme) */
+    --visa-gold: #F7B600; /* VISA brand gold */
+    --visa-white: #FFFFFF; /* VISA logo background */
+    --chip-light: #F5DC8B; /* credit card chip, light gold */
+    --chip-dark: #B88A2E; /* credit card chip, dark gold */
+    --pending: #f3ce78; /* pending color */
+    --pending-glow: color-mix(in srgb, var(--pending) 12%, transparent); /* transparent pending background (notices, badges) */
+    --info: #5EB6F2; /* informational blue (scheduled / refunded badges, dashboard cards) */
+    --info-glow: color-mix(in srgb, var(--info) 12%, transparent); /* transparent info background (badges) */
+    --info-border: color-mix(in srgb, var(--info) 35%, transparent); /* transparent info border */
+    --text-primary: #F5F5F7; /* normal text color */
+    --text-secondary: #8A8F99; /* immutable text color often for private button */
+    --text-on-accent: #FFFFFF; /* text/icons placed on top of an accent-colored background */
+    --border: #2C2C2C; /* normal border color */
+    --border-light: #3A3A3A; /* lighter border color */
+    --border-hover: #444444; /* border when hover */
+    --border-focus: #666666; /* border when focus, like when clicking textbox */
+    --overlay-faint: color-mix(in srgb, var(--text-primary) 3%, transparent); /* barely visible tint (active card in manager navigation) */
+    --overlay-subtle: color-mix(in srgb, var(--text-primary) 6%, transparent); /* faint tint over a surface (tag background) */
+    --overlay-hover: color-mix(in srgb, var(--text-primary) 12%, transparent); /* slightly stronger tint when hovering */
+    --scrollbar-thumb: #2C2C2C; /* the part of the scrollbar that we drag to move up/down */
+    --scrollbar-thumb-hover: #444444; /* that thing but hover */
+    --boxshadow: rgba(0, 0, 0, 0.5); /* box shadow color */
+    --icon-filter: brightness(0) invert(1); /* recolors black SVG/PNG icons; dark theme = white, light theme = brightness(0) */
+    --icon-filter-on-accent: brightness(0) invert(1); /* same, but for icons sitting on an accent background (match --text-on-accent) */
+    --qr-background: #FFFFFF; /* QR code backing, must stay light in every theme so the code can be scanned */
+}
+
+/* Base and reset styles */
+* {
+    box-sizing: border-box;
+}
+/* Force all form elements to inherit the global font */
+input, textarea, select, button {
+    font-family: inherit;
+}
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--body-bg);
+    color: var(--text-primary);
+}
+
+/* Manager Layout (Header, Navigation, Body - Footer & Right Sidebar removed) */
+.Layout2 {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: grid;
+    grid:
+        "header header" auto
+        "managerNavigation body" minmax(0, 1fr)
+        / 260px minmax(0, 1fr);
+    gap: 8px;
+    overflow: hidden;
+}
+
+.Header,
+.ManagerNavigation,
+.ManagerMain {
+    border-radius: 12px;
+}
+
+/* Manager Navigation Sidebar */
+.ManagerNavigation {
+	width: 260px;
+    background-color: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    grid-area: managerNavigation;
+    flex-shrink: 0;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Manager Navigation */
+.manager-navigation-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Standalone Dashboard */
+.manager-navigation-nav > .manager-nav-item {
+    margin-bottom: 4px;
+    padding: 12px 14px;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/* Grouped Section Cards */
+.manager-nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 12px;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+.manager-nav-section:has(.manager-nav-item.active) {
+    border-color: var(--accent);
+    background-color: var(--overlay-faint);
+}
+
+/* Section Titles */
+.manager-nav-section-title {
+    padding: 0 8px 6px;
+    margin-bottom: 2px;
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
+.manager-nav-section:has(.manager-nav-item.active) .manager-nav-section-title {
+    color: var(--accent);
+}
+
+/* Navigation Items */
+.manager-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+.manager-nav-item:hover {
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
+}
+.manager-nav-item.active {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-weight: bold;
+}
+
+/* Manager Main Body */
+.ManagerMain {
+    position: relative; /* containing block for absolutely positioned children, so they cannot leak out and make the whole page scroll */
+    min-width: 0;
+    padding: 25px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    grid-area: body;
+    overflow-y: auto;
+}
+.ManagerMain h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Manager Dashboard Header */
+.manager-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+.manager-header-info {
+    min-width: 0;
+}
+.manager-header h2 {
+    margin: 0 0 8px;
+}
+.manager-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.manager-header strong {
+    color: var(--text-primary);
+}
+
+/* Theater Filter */
+.manager-theater-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.manager-theater-filter label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+}
+.manager-theater-filter select {
+    min-width: 180px;
+    padding: 9px 12px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+.manager-theater-filter select:hover {
+    border-color: var(--border-hover);
+}
+.manager-theater-filter select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.manager-theater-filter select option {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+/* Manager Summary */
+.manager-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.manager-summary-card {
+    min-width: 0;
+    padding: 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.manager-summary-card h3 {
+    margin: 0 0 12px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+}
+.manager-summary-card p {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Manager Panels */
+.manager-panel {
+    margin-bottom: 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.manager-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+}
+.manager-panel-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 16px;
+}
+.manager-panel-header a {
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+}
+.manager-panel-header a:hover {
+    text-decoration: underline;
+}
+.manager-panel-content {
+    padding: 20px;
+}
+.manager-panel-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Manager Scrollbars */
+.ManagerMain::-webkit-scrollbar,
+.ManagerNavigation::-webkit-scrollbar {
+    width: 10px;
+}
+.ManagerMain::-webkit-scrollbar-track,
+.ManagerNavigation::-webkit-scrollbar-track {
+    background: var(--background);
+}
+.ManagerMain::-webkit-scrollbar-thumb,
+.ManagerNavigation::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+}
+.ManagerMain::-webkit-scrollbar-thumb:hover,
+.ManagerNavigation::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* manager_header.jsp */
+.Header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    gap: 25px;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    grid-area: header;
+}
+.website-name {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.website-name:hover {
+    color: var(--accent);
+}
+
+/* Header menu */
+.header-menu {
+    position: relative;
+    flex-shrink: 0;
+}
+.menu-button {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.menu-button:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--accent);
+}
+.menu-button:active {
+    transform: scale(0.95);
+}
+.menu-dots {
+    font-size: 20px;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+/* Menu dropdown */
+.menu-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 250px;
+    padding: 10px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--boxshadow);
+    z-index: 1000;
+    display: none;
+}
+.menu-dropdown.show {
+    display: block;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+.menu-item:hover {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+.menu-item-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+    filter: var(--icon-filter);
+    flex-shrink: 0;
+}
+.menu-divider {
+    height: 1px;
+    margin: 5px 0;
+    background-color: var(--border);
+}
+.logout-item {
+    color: var(--danger);
+}
+.logout-item:hover {
+    color: var(--danger);
+}
+
+/* User information */
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.user-profile-link {
+    text-decoration: none;
+    color: inherit;
+}
+.user-profile-link:visited,
+.user-profile-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: var(--background);
+}
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.default-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-size: 20px;
+    font-weight: bold;
+}
+.user-information {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+.user-name {
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+.user-role {
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+/* Some other components */
+/* for the password toggle button and the div contain it and the textbox next to it */
+/* Only the password toggle button is reusable, the div aint */
+/* Input groups - the textboxes with password toggle button */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.input-group label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+.input-group input {
+    width: 100%;
+    padding: 13px 15px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-group input::placeholder {
+    color: var(--text-secondary);
+}
+.input-group input:hover {
+    border-color: var(--border-hover);
+}
+.input-group input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.password-wrapper input {
+    flex: 1;
+    min-width: 0;
+}
+.password-toggle {
+    flex-shrink: 0;
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    flex: 0 0 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.password-toggle:hover {
+    background-color: var(--background);
+    border-color: var(--border-focus);
+    color: var(--text-primary);
+}
+.password-toggle.password-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.password-toggle.password-visible:hover {
+    background-color: var(--accent-glow);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+/* the verification section div */
+.verification-section {
+    margin-bottom: 25px;
+    padding: 16px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.verification-title {
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+.verification-note {
+    margin: 0 0 12px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.verification-row {
+    display: flex;
+    gap: 12px; /* Guaranteed minimum pixel gap between input and button */
+    align-items: stretch;
+}
+.verification-row input {
+    flex: 1;
+    min-width: 140px; /* Prevents the input from shrinking below 140px */
+    padding: 13px 15px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.verification-row input::placeholder {
+    color: var(--text-secondary);
+}
+.verification-row input:hover {
+    border-color: var(--border-hover);
+}
+.verification-row input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+/* Send Email Button */
+.send-button {
+    flex-shrink: 0;
+    min-width: 110px; /* Guarantees the button stays at least 110px wide so text never awkwardly wraps */
+    padding: 0 15px;
+    background-color: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+}
+.send-button:hover {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+}
+/* Manager dashboard data tables and responsive summary
+   (these rules override the base .manager-summary / .manager-panel rules above) */
+
+/* Four dashboard summary cards */
+.manager-summary {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+.manager-summary-card {
+    --card-color: var(--accent); /* default; the modifier classes below give each card its own color */
+    position: relative;
+    min-width: 0;
+    padding: 22px;
+    overflow: hidden;
+    border: 1px solid var(--overlay-subtle);
+    border-radius: 10px;
+    background-image: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--card-color) 10%, transparent),
+        transparent 70%
+    );
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+/* colored stripe on top of the card */
+.manager-summary-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--card-color);
+}
+.manager-summary-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--card-color) 35%, transparent);
+}
+.manager-summary-card-bookings {
+    --card-color: var(--accent);
+}
+.manager-summary-card-revenue {
+    --card-color: var(--success);
+}
+.manager-summary-card-showtimes {
+    --card-color: var(--pending);
+}
+.manager-summary-card-rooms {
+    --card-color: var(--info);
+}
+.manager-summary-card h3 {
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+.manager-summary-card p {
+    color: var(--card-color);
+    overflow-wrap: anywhere;
+    line-height: 1.3;
+}
+/* the small description under the number (e.g. "Confirmed bookings made today") */
+.manager-summary-card span {
+    display: block;
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Dashboard panels */
+.manager-panel {
+    border: 1px solid var(--overlay-subtle);
+    border-radius: 10px;
+}
+.manager-panel-header {
+    min-height: 58px;
+}
+.manager-panel-header a {
+    flex-shrink: 0;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+.manager-panel-header a:hover {
+    opacity: 0.8;
+}
+.manager-panel-content {
+    min-width: 0;
+}
+/* Colored marker before the panel title (only panels with a color class get it) */
+.manager-panel-showtimes {
+    --panel-color: var(--info);
+}
+.manager-panel-bookings {
+    --panel-color: var(--accent);
+}
+.manager-panel-rooms {
+    --panel-color: var(--success);
+}
+.manager-panel-statistics {
+    --panel-color: var(--pending);
+}
+.manager-panel-showtimes .manager-panel-header h3::before,
+.manager-panel-bookings .manager-panel-header h3::before,
+.manager-panel-rooms .manager-panel-header h3::before,
+.manager-panel-statistics .manager-panel-header h3::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    margin-right: 10px;
+    border-radius: 2px;
+    background-color: var(--panel-color);
+    vertical-align: -3px;
+}
+
+/* Table wrapper */
+.manager-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+.manager-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+.manager-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+}
+.manager-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Dashboard data tables */
+.manager-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+    white-space: nowrap;
+}
+.manager-data-table thead {
+    background: var(--overlay-faint);
+}
+.manager-data-table th {
+    padding: 13px 15px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+}
+.manager-data-table td {
+    padding: 14px 15px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--overlay-subtle);
+    vertical-align: middle;
+}
+.manager-data-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+.manager-data-table tbody tr:hover {
+    background-color: var(--overlay-faint);
+}
+.manager-data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Secondary information inside table cells */
+.manager-muted {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+.manager-data-table .manager-muted {
+    display: inline-block;
+    margin-top: 4px;
+}
+
+/* Status labels */
+.manager-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 9px;
+    border: 1px solid var(--overlay-hover);
+    border-radius: 999px;
+    background: var(--overlay-faint);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+/* The JSP adds manager-status-<value> (lowercase) to every badge.
+   Green = done / paid, gold = waiting, blue = scheduled / refund in progress,
+   red = cancelled / failed, no extra class = neutral grey (completed, unpaid, unknown). */
+.manager-status-confirmed,
+.manager-status-success {
+    color: var(--success);
+    border-color: var(--success-border);
+    background: var(--success-glow);
+}
+.manager-status-pending,
+.manager-status-postponed {
+    color: var(--pending);
+    border-color: color-mix(in srgb, var(--pending) 35%, transparent);
+    background: var(--pending-glow);
+}
+.manager-status-scheduled,
+.manager-status-refunded {
+    color: var(--info);
+    border-color: var(--info-border);
+    background: var(--info-glow);
+}
+.manager-status-cancelled,
+.manager-status-canceled,
+.manager-status-failed {
+    color: var(--danger);
+    border-color: var(--danger-border);
+    background: var(--danger-glow);
+}
+
+/* Empty state row (a <td class="manager-table-empty">; the longer selector replaces the old !important) */
+.manager-data-table td.manager-table-empty {
+    padding: 32px 16px;
+    color: var(--text-secondary);
+    text-align: center;
+    white-space: normal;
+    line-height: 1.6;
+}
+
+/* Transaction code formatting */
+.manager-transaction-code {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+    .manager-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 600px) {
+    .manager-summary {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .manager-summary-card {
+        padding: 18px;
+    }
+    .manager-summary-card h3 {
+        margin-bottom: 8px;
+    }
+    .manager-summary-card p {
+        font-size: 24px;
+    }
+    .manager-panel-header {
+        padding: 14px 16px;
+        gap: 10px;
+    }
+    .manager-panel-header h3 {
+        font-size: 15px;
+    }
+    .manager-panel-content {
+        padding: 14px;
+    }
+    .manager-data-table th,
+    .manager-data-table td {
+        padding: 12px;
+    }
+}
+
+/* Responsive media queries */
+@media (max-width: 700px) {
+    .Layout2 {
+        height: auto;
+        grid:
+            "header" auto
+            "managerNavigation" auto
+            "body" auto
+            / 1fr;
+        overflow: visible;
+    }
+    .ManagerNavigation {
+        width: 100%;
+        min-height: auto;
+        padding: 10px;
+        border-right: none;
+    }
+    .manager-navigation-nav {
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        align-items: flex-start;
+    }
+    .manager-nav-section {
+        flex-direction: column;
+        flex-shrink: 0;
+        min-width: 190px;
+        margin-top: 0;
+    }
+    .manager-navigation-nav > .manager-nav-item {
+        flex-shrink: 0;
+        min-width: 140px;
+    }
+    .manager-nav-section-title {
+        display: block;
+    }
+    .manager-nav-item {
+        white-space: nowrap;
+    }
+}
+@media (max-width: 600px) {
+    .manager-summary {
+        grid-template-columns: 1fr;
+    }
+    .ManagerMain {
+        padding: 20px 15px;
+    }
+    .manager-navigation-nav {
+        gap: 8px;
+    }
+    .manager-nav-section {
+        min-width: 170px;
+        padding: 12px 10px;
+    }
+    .manager-theater-filter {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        width: 100%;
+    }
+    .manager-theater-filter label {
+        grid-column: 1 / -1;
+    }
+    .manager-theater-filter select {
+        min-width: 0;
+        width: 100%;
+    }
+}

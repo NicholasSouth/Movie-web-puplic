@@ -1,0 +1,15 @@
+/* admin_reports.jsp - reported comments
+   Needs the :root variables from main_admin.css (or main.css). */
+.admin-comment-text {
+    max-width: 420px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+.admin-comment-full {
+    max-width: 760px;
+    padding: 14px 16px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-primary);
+}

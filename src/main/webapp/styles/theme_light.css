@@ -1,0 +1,70 @@
+/* Light theme: "Daylight"
+   Turn it on with <html data-theme="light">. It has to be the <html> element, because the
+   glow / border / overlay variables in :root are computed on that same element and only follow
+   the new --accent, --danger, --text-primary... when those are changed there too.
+
+   Link this file after main.css / main_manager.css / main_admin.css, or paste the block below
+   into each of the three root files (keep the copies identical). ":root[data-theme]" is more
+   specific than ":root", so the order of the files does not matter.
+
+   Not overridden on purpose:
+   - brand colors (--visa-*, --chip-*, --qr-background) stay the same in every theme
+   - --font-family
+   - --accent-glow, --accent-border, --danger-glow, --danger-border, --success-glow,
+     --success-border, --pending-glow, --info-glow, --info-border and --overlay-faint / subtle / hover
+     are computed from the colors below, so they follow automatically
+
+   Layers, darkest to lightest:  --body-bg (gaps)  <  --background (page area, inputs)
+   <  --surface (header, sidebars, cards, panels, white)  and  --surface-light / --surface-hover
+   are slightly grey steps used for table headers, badges, hovers.
+
+   Colors for text and badges were checked against WCAG AA (4.5:1): text on white / page / grey
+   surfaces, white on accent / success / danger, status colors on their own tinted badge
+   backgrounds, and seat-type colors on the seat tint. */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    /* Surfaces */
+    --body-bg: #E8EAEF;
+    --background: #F4F5F8;
+    --surface: #FFFFFF;
+    --surface-light: #EEF0F4;
+    --surface-hover: #E5E8EE;
+
+    /* Text */
+    --text-primary: #14171C;
+    --text-secondary: #586070;
+    --text-on-accent: #FFFFFF;
+    --text-on-success: #FFFFFF;
+    --text-on-danger: #FFFFFF;
+
+    /* Borders (lightest to strongest) */
+    --border: #E1E4EA;
+    --border-light: #D0D5DE;
+    --border-hover: #B8BFCC;
+    --border-focus: #8C95A6;
+
+    /* Accent (deep crimson, a little darker than the dark theme red so red text stays readable) */
+    --accent: #BE0618;
+    --accent-hover: #9E0514;
+
+    /* Status colors (dark enough to read as text on white and on their own tint) */
+    --success: #166534;
+    --danger: #B91C1C;
+    --pending: #92400E;
+    --info: #075985;
+    --rating: #D97706;
+
+    /* Seat types (used as text on a light tint, so they are deeper than the dark theme ones) */
+    --seat-vip: #7A4A00;
+    --seat-discount: #1A4FA0;
+    --seat-couple: #A3124E;
+
+    /* Misc */
+    --overlay-backdrop: rgba(15, 23, 42, 0.45);
+    --boxshadow: rgba(16, 24, 40, 0.12);
+    --scrollbar-thumb: #C9CED8;
+    --scrollbar-thumb-hover: #AEB5C2;
+    --icon-filter: brightness(0); /* black icons on light backgrounds */
+    --icon-filter-on-accent: brightness(0) invert(1); /* white icons on the crimson accent */
+}

@@ -1,0 +1,395 @@
+.profile-page {
+    min-width: 0;
+}
+
+/* this include banner, avt, username, name, role, setting button if ur viewing ur own page */
+.profile-header {
+    width: 100%;
+    margin-bottom: 24px;
+    background-color: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+}
+/* Banner */
+.profile-banner {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background-color: var(--background);
+}
+.profile-banner img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+/* Default banner, shown when the user has no banner image */
+.default-banner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        var(--surface-light),
+        var(--background)
+    );
+}
+/* this is store the avt and user infors */
+.profile-header-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 130px;
+    padding: 0 28px 28px;
+}
+/* Avatar */
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    margin-top: -60px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 5px solid var(--surface);
+    background-color: var(--background);
+}
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+/* Default avatar */
+.profile-default-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-size: 42px;
+    font-weight: bold;
+}
+/* user information like username, role, name */
+.profile-identity {
+    min-width: 0;
+    margin-left: 20px;
+}
+.profile-identity h1 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.profile-username {
+    margin: 4px 0 8px;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+.profile-role {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 5px;
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+/* Setting button if ur viewing ur own page */
+.profile-actions {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+.profile-settings-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--border-light);
+    border-radius: 7px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.profile-settings-button:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--accent);
+}
+.profile-settings-button img {
+    width: 18px;
+    height: 18px;
+    display: block;
+    object-fit: contain;
+    filter: var(--icon-filter);
+}
+
+/* profile section contain favourites and bookings */
+.profile-section {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 24px;
+    background-color: var(--surface);
+    border-radius: 12px;
+}
+/* header indicate which ssection is it */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+.section-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 22px;
+}
+.section-description {
+    margin: 5px 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+/* public/private button */
+.visibility-button {
+    display: inline-grid; /* Uses grid so text states can overlap and share space */
+    grid-template-columns: 1fr; /* Forces single track */
+    align-items: center;
+    justify-content: start;
+    grid-auto-flow: column; /* Puts icon and text side-by-side */
+    gap: 7px;
+    padding: 8px 13px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.visibility-button:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--accent);
+}
+/* Public / Private icon */
+.visibility-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    object-fit: contain;
+    filter: var(--icon-filter);
+}
+#visibilityText {
+    display: inline-block;
+    min-width: 50px; /* Ensures space for "Private" */
+    text-align: left;
+}
+/* Booking fixed private label*/
+.private-label {
+    flex-shrink: 0;
+    padding: 7px 11px;
+    border-radius: 6px;
+    background-color: var(--background);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+}
+/* when no booking, a text shows indicate it */
+.booking-placeholder {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+/* when viewing other's page, bookings shows a text indicate all user's booking is private */
+.booking-lock {
+    margin-bottom: 8px;
+    font-size: 30px;
+}
+.booking-placeholder h3 {
+    margin: 0 0 6px;
+    color: var(--text-primary);
+    font-size: 17px;
+}
+.booking-placeholder p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+/* this is the booking card holder */
+.booking-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.booking-card {
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+.booking-card-main {
+    display: flex;
+    gap: 16px;
+}
+.booking-poster {
+    flex: 0 0 100px;
+    width: 100px;
+    height: 145px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--background);
+}
+.booking-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.booking-no-poster {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+.booking-card-info {
+    flex: 1;
+    min-width: 0;
+}
+.booking-card-info h3 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 18px;
+}
+.booking-card-info p,
+.booking-details-content p {
+    margin: 6px 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+.booking-card-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+}
+.booking-card-bottom strong {
+    color: var(--text-primary);
+}
+.booking-status {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 5px;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 600;
+}
+.booking-status.confirmed,
+.booking-status.completed {
+    color: var(--success);
+}
+.booking-status.pending {
+    color: var(--pending);
+}
+.booking-status.cancelled,
+.booking-status.refunded {
+    color: var(--danger);
+}
+.booking-details {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+.booking-details summary {
+    width: fit-content;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+.booking-details summary:hover {
+    color: var(--accent);
+}
+.booking-details-content {
+    display: grid;
+    gap: 4px;
+    margin-top: 12px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .profile-banner {
+        height: 200px;
+    }
+    .profile-header-info {
+        padding: 0 20px 22px;
+    }
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+    .profile-identity h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 650px) {
+    .profile-banner {
+        height: 160px;
+    }
+    .profile-header-info {
+        flex-wrap: wrap;
+    }
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+        margin-top: -45px;
+    }
+    .profile-identity {
+        width: calc(100% - 110px);
+        margin-top: 10px;
+    }
+    .profile-actions {
+        width: 100%;
+        margin-top: 18px;
+        margin-left: 0;
+    }
+    .profile-settings-button {
+        justify-content: center;
+    }
+    .section-header {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-section {
+        padding: 18px;
+    }
+    .profile-header-info {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .section-header {
+        flex-direction: column;
+    }
+    .visibility-button {
+        align-self: flex-start;
+    }
+}

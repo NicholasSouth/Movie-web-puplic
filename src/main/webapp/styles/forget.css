@@ -1,0 +1,136 @@
+/* Base styles */
+body {
+    min-height: 100vh;
+}
+
+/* Page layout */
+.forgot-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: radial-gradient(
+        circle at top,
+        var(--surface-light) 0%,
+        var(--background) 50%
+    );
+}
+
+/* Container */
+.forgot-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px var(--boxshadow);
+}
+
+/* Website name override */
+.forgot-container .website-name {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-align: center;
+    transition: color 0.2s;
+}
+/* the title Forgot Password */
+.forgot-container h1 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 28px;
+    text-align: center;
+}
+/* the guiding subtitle */
+.subtitle {
+    margin: 10px 0 30px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+/* remind user that we will send email */
+.note {
+    margin: -10px 0 20px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.4;
+}
+/* error message when user input wrong things */
+.error-message {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    color: var(--danger);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* the form that contain all the input user can do */
+.forgot-form {
+    display: flex;
+    flex-direction: column;
+}
+/* reset password button */
+.reset-button {
+    width: 100%;
+    padding: 13px 15px;
+    margin-top: 5px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+}
+.reset-button:hover {
+    background-color: var(--accent);
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+.reset-button:active {
+    transform: translateY(0);
+}
+/* back to login clickable text */
+.login-text {
+    margin: 25px 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-align: center;
+}
+.login-link {
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 550px) {
+    .forgot-page {
+        padding: 20px 15px;
+    }
+    .forgot-container {
+        padding: 30px 20px;
+    }
+    .forgot-container h1 {
+        font-size: 25px;
+    }
+    .verification-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .send-button {
+        width: 100%;
+        padding: 12px;
+    }
+}

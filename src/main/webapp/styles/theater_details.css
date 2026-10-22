@@ -1,0 +1,434 @@
+.theater-details {
+	padding: 25px;
+	background-color: var(--surface);
+	border-radius: 12px;
+}
+
+/* Theater Image */
+.theater-details-image {
+	width: 100%;
+	overflow: hidden;
+	border-radius: 10px;
+}
+.theater-details-image img {
+	width: 100%;
+	height: 320px;
+	display: block;
+	object-fit: cover;
+}
+
+/* Theater Information */
+.theater-details-information {
+  	margin-top: 25px;
+}
+.theater-details-information h1 {
+	margin: 0 0 15px 0;
+	color: var(--text-primary);
+	font-size: 32px;
+	line-height: 1.2;
+}
+.theater-details-information p {
+	margin: 10px 0;
+	color: var(--text-secondary);
+	line-height: 1.6;
+}
+.theater-details-information strong {
+  	color: var(--text-primary);
+}
+
+/* Buttons */
+.location-button {
+  	background-color: var(--border);
+ 	color: var(--text-primary);
+}
+.location-button:hover {
+  	background-color: var(--border-light);
+}
+.booking-button {
+	background-color: var(--accent);
+	color: var(--text-on-accent);
+}
+.booking-button:hover {
+  	background-color: var(--accent-hover);
+}
+
+/* Theater Sections */
+.theater-section {
+	margin-top: 20px;
+	padding: 25px;
+	background-color: var(--surface);
+	border-radius: 12px;
+}
+.theater-section h2 {
+	margin: 0 0 20px 0;
+	color: var(--text-primary);
+	font-size: 23px;
+	line-height: 1.3;
+}
+.theater-section > p {
+	margin: 0;
+	color: var(--text-secondary);
+	line-height: 1.6;
+}
+
+/* Available Rooms */
+.room-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 15px;
+}
+.room-card {
+	padding: 18px;
+	background-color: var(--background);
+	border: 1px solid transparent;
+	border-radius: 10px;
+	transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.room-card:hover {
+	border-color: var(--border);
+	transform: translateY(-2px);
+}
+.room-card h3 {
+	margin: 0 0 8px 0;
+	color: var(--text-primary);
+	font-size: 17px;
+}
+.room-card p {
+	margin: 0;
+	color: var(--accent);
+	font-size: 14px;
+}
+
+/* Day Selector */
+.schedule-week-selector {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+/* Custom Scrollbars for Week Selector and Schedule Table */
+.schedule-week-selector::-webkit-scrollbar,
+.schedule-table-wrapper::-webkit-scrollbar {
+    height: 8px; /* Controls height for horizontal scrollbars */
+    width: 8px;
+}
+.schedule-week-selector::-webkit-scrollbar-track,
+.schedule-table-wrapper::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: 4px;
+}
+.schedule-week-selector::-webkit-scrollbar-thumb,
+.schedule-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+.schedule-week-selector::-webkit-scrollbar-thumb:hover,
+.schedule-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+.schedule-day {
+  	flex: 1;
+  	min-width: 100px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 65px;
+	padding: 10px 8px;
+	background-color: var(--background);
+	border: 1px solid transparent;
+	border-radius: 9px;
+	color: var(--text-secondary);
+	text-decoration: none;
+	transition:
+	    background-color 0.2s ease,
+	    border-color 0.2s ease,
+	    color 0.2s ease,
+	    transform 0.2s ease;
+}
+.schedule-day:hover {
+	background-color: var(--surface);
+	border-color: var(--border);
+	color: var(--text-primary);
+	transform: translateY(-1px);
+}
+.schedule-day.selected {
+	background-color: var(--accent);
+	border-color: var(--accent);
+	color: var(--text-on-accent);
+}
+.schedule-day-name {
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+.schedule-day-date {
+	margin-top: 4px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+/* Schedule Table Wrapper */
+.schedule-table-wrapper {
+	width: 100%;
+	overflow-x: auto;
+	border-radius: 10px;
+}
+
+/* Schedule Table */
+.schedule-table {
+	width: 100%;
+	min-width: 850px;
+	border-collapse: separate;
+	border-spacing: 0;
+	background-color: var(--background);
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+/* Table Header */
+.schedule-table thead th {
+	padding: 15px 12px;
+	background-color: var(--surface);
+	border-bottom: 1px solid var(--border);
+	color: var(--text-primary);
+	font-size: 14px;
+	font-weight: 600;
+	text-align: center;
+	white-space: nowrap;
+}
+.schedule-table thead th:first-child {
+	width: 85px;
+	text-align: center;
+}
+
+/* Table Cells */
+.schedule-table tbody td {
+	min-width: 150px;
+	padding: 10px;
+	border-right: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+	vertical-align: top;
+}
+.schedule-table tbody tr:last-child td {
+  	border-bottom: none;
+}
+.schedule-table tbody td:last-child {
+  	border-right: none;
+}
+
+/* Time Column */
+.schedule-time {
+	width: 85px;
+	min-width: 85px !important;
+	padding: 15px 8px !important;
+	color: var(--text-secondary);
+	font-size: 14px;
+	font-weight: 600;
+	text-align: center;
+	vertical-align: middle !important;
+	white-space: nowrap;
+}
+
+/* Empty Schedule Cell */
+.schedule-empty {
+	min-height: 170px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-secondary);
+	font-size: 13px;
+}
+
+/* Movie Schedule Cell */
+.schedule-movie {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 190px;
+	padding: 8px;
+	box-sizing: border-box;
+	background-color: var(--surface);
+	border: 1px solid transparent;
+	border-radius: 8px;
+	color: var(--text-primary);
+	text-decoration: none;
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease,
+		transform 0.2s ease;
+}
+.schedule-movie:hover {
+	background-color: var(--surface-hover);
+	border-color: var(--border-light);
+	transform: translateY(-2px);
+}
+
+/* Movie Poster */
+.schedule-movie img {
+	width: 100%;
+	height: 135px;
+	display: block;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 6px;
+}
+
+/* Movie Name */
+.schedule-movie-name {
+	margin-top: 8px;
+	color: var(--text-primary);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Movie Showtime */
+.schedule-movie-time {
+	margin-top: 5px;
+	color: var(--text-secondary);
+	font-size: 12px;
+	line-height: 1.3;
+}
+
+/* No Data */
+.no-data {
+	margin: 0;
+	padding: 15px 0;
+	color: var(--text-secondary);
+	font-size: 14px;
+}
+
+/* Schedule Empty Message */
+.schedule-no-movies {
+	padding: 40px 20px;
+	color: var(--text-secondary);
+	font-size: 14px;
+	text-align: center;
+}
+
+/* Rresponsive */
+@media (max-width: 900px) {
+	.room-grid {
+	  	grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.theater-details-image img {
+	 	height: 280px;
+	}
+	.schedule-days {
+	  	gap: 6px;
+	}
+	.schedule-day {
+	  	min-height: 60px;
+	  	padding: 8px 5px;
+	}
+	.schedule-day-name {
+	  	font-size: 12px;
+	}
+	.schedule-day-date {
+	  	font-size: 15px;
+	}
+	.schedule-table {
+		min-width: 750px;
+	}
+}
+
+@media (max-width: 700px) {
+	 .theater-details,
+	 .theater-section {
+		padding: 20px;
+	 }
+	 .theater-details-image img {
+	   	height: 220px;
+	 }
+	 .theater-details-information {
+	   	margin-top: 20px;
+	 }
+	 .theater-details-information h1 {
+	   	font-size: 26px;
+	 }
+	 .theater-actions {
+	   	flex-direction: column;
+	 }
+	 .theater-actions button,
+	 .theater-actions a {
+	   	width: 100%;
+	 }
+	 .room-grid {
+	   	grid-template-columns: 1fr;
+	 }	
+	 .schedule-week-selector {
+		gap: 6px;
+	 }
+	 
+	 /* Keep all 7 days on one row.
+	 * User can scroll horizontally on smaller screens.*/
+	.schedule-days {
+	  	display: flex;
+	  	overflow-x: auto;
+	  	padding-bottom: 5px;
+	}
+	.schedule-day {
+	  	flex: 0 0 75px;
+	  	min-width: 75px;
+	}
+	.schedule-table {
+	  	min-width: 700px;
+	}
+	.schedule-movie {
+	  	min-height: 180px;
+	}
+	.schedule-movie img {
+	  	height: 125px;
+	}
+}
+
+@media (max-width: 450px) {
+	.theater-details,
+	.theater-section {
+	  	padding: 16px;
+	}
+	.theater-details-image img {
+	  	height: 190px;
+	}
+	.schedule-week-selector {
+	  	display: flex;
+	  	overflow-x: auto;
+	  	padding-bottom: 5px;
+	}
+	.schedule-day {
+	  	flex-basis: 70px;
+	  	min-width: 70px;
+	}
+	.schedule-table {
+	  	min-width: 650px;
+	}
+	.schedule-table tbody td {
+	  	min-width: 135px;
+  		padding: 8px;
+	}
+	.schedule-movie {
+	  	min-height: 165px;
+	  	padding: 6px;
+	}
+	.schedule-movie img {
+	  	height: 110px;
+	}
+	.schedule-movie-name {
+	  	font-size: 13px;
+	}
+	.schedule-movie-time {
+	  	font-size: 11px;
+	}
+}

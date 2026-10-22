@@ -1,0 +1,638 @@
+.ManagerRoomsPage {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 28px;
+    color: var(--text-primary);
+}
+.ManagerRoomsPage *,
+.ManagerRoomsPage *::before,
+.ManagerRoomsPage *::after {
+    box-sizing: border-box;
+}
+.ManagerRoomsPage input,
+.ManagerRoomsPage select,
+.ManagerRoomsPage button {
+    font-family: inherit;
+}
+
+/* Page header
+   (.ManagerRoomsEyebrow and h1 are kept for the old table-based seats page) */
+.ManagerRoomsHeading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 28px;
+}
+.ManagerRoomsHeading > div {
+    min-width: 0;
+}
+.ManagerRoomsBreadcrumb,
+.ManagerRoomsEyebrow {
+    display: block;
+    margin: 0 0 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+.ManagerRoomsHeading h1,
+.ManagerRoomsHeading h2 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 700;
+}
+.ManagerRoomsSubtitle {
+    max-width: 650px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+.ManagerRoomsCurrentTheater {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+.ManagerRoomsCurrentTheater strong {
+    color: var(--text-primary);
+    overflow-wrap: anywhere;
+}
+.ManagerRoomsBackButton {
+    min-height: 42px;
+    padding: 10px 18px;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* Success / error notices */
+.ManagerRoomsNotice {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-radius: 8px;
+    background-color: var(--surface);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+.ManagerRoomsNoticeError {
+    border-left-color: var(--danger);
+    color: var(--danger);
+}
+.ManagerRoomsNoticeSuccess {
+    border-left-color: var(--success);
+    color: var(--success);
+}
+
+/* Content panels */
+.ManagerRoomsPanel {
+    min-width: 0;
+    margin-bottom: 28px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background-color: var(--surface);
+}
+.ManagerRoomsPanelHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+.ManagerRoomsPanelHeading h2 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+.ManagerRoomsPanelHeading p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+.ManagerRoomsCount {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 11px;
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Form fields (Add Room form) */
+.ManagerRoomCreateForm {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 20px;
+}
+.ManagerRoomsField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+.ManagerRoomsField label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.ManagerRoomsField small {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+.ManagerRoomsField input,
+.ManagerRoomsField select {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 13px;
+    text-overflow: ellipsis;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ManagerRoomsField input::placeholder {
+    color: var(--text-secondary);
+}
+.ManagerRoomsField input:hover,
+.ManagerRoomsField select:hover {
+    border-color: var(--border-hover);
+}
+.ManagerRoomsField input:focus,
+.ManagerRoomsField select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.ManagerRoomsField select option,
+.ManagerRoomsTable select option {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+/* Buttons */
+.ManagerRoomsButton {
+    min-height: 34px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--surface-light);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.ManagerRoomsButton:hover:not(:disabled) {
+    border-color: var(--border-hover);
+    background-color: var(--surface-hover);
+}
+.ManagerRoomsButton:active:not(:disabled) {
+    transform: scale(0.98);
+}
+.ManagerRoomsButton:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+.ManagerRoomsButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* Primary: Add Room */
+.ManagerRoomsButtonPrimary {
+    min-height: 42px;
+    padding: 10px 18px;
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-size: 13px;
+}
+.ManagerRoomsButtonPrimary:hover:not(:disabled) {
+    border-color: var(--accent-hover);
+    background-color: var(--accent-hover);
+}
+/* Secondary: Seats, Save, Back */
+.ManagerRoomsButtonSecondary {
+    border-color: var(--border-light);
+    background-color: var(--surface-light);
+    color: var(--text-primary);
+}
+/* Warning: Deactivate (outlined, fills with a soft tint on hover) */
+.ManagerRoomsButtonWarning {
+    border-color: color-mix(in srgb, var(--pending) 35%, transparent);
+    background-color: transparent;
+    color: var(--pending);
+}
+.ManagerRoomsButtonWarning:hover:not(:disabled) {
+    border-color: var(--pending);
+    background-color: var(--pending-glow);
+}
+/* Success: Activate */
+.ManagerRoomsButtonSuccess {
+    border-color: var(--success-border);
+    background-color: transparent;
+    color: var(--success);
+}
+.ManagerRoomsButtonSuccess:hover:not(:disabled) {
+    border-color: var(--success);
+    background-color: var(--success-glow);
+}
+/* Danger: Delete */
+.ManagerRoomsButtonDanger {
+    border-color: var(--danger-border);
+    background-color: transparent;
+    color: var(--danger);
+}
+.ManagerRoomsButtonDanger:hover:not(:disabled) {
+    border-color: var(--danger);
+    background-color: var(--danger-glow);
+}
+
+/* Rooms table */
+.ManagerRoomsTableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--surface);
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--background);
+}
+.ManagerRoomsTableWrapper::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+.ManagerRoomsTableWrapper::-webkit-scrollbar-track {
+    background-color: var(--background);
+}
+.ManagerRoomsTableWrapper::-webkit-scrollbar-thumb {
+    border: 2px solid var(--background);
+    border-radius: 10px;
+    background-color: var(--scrollbar-thumb);
+}
+.ManagerRoomsTableWrapper::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+}
+.ManagerRoomsTable {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+    text-align: left;
+}
+.ManagerRoomsTable th,
+.ManagerRoomsTable td {
+    min-width: 0;
+    padding: 14px 12px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+.ManagerRoomsTable th {
+    white-space: nowrap;
+}
+.ManagerRoomsTable th:last-child,
+.ManagerRoomsTable td:last-child {
+    border-right: none;
+}
+.ManagerRoomsTable tbody tr:last-child td {
+    border-bottom: none;
+}
+.ManagerRoomsTable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+.ManagerRoomsTable tbody td {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+.ManagerRoomsTable tbody tr {
+    background-color: var(--surface);
+    transition: background-color 0.15s;
+}
+.ManagerRoomsTable tbody tr:hover {
+    background-color: var(--surface-hover);
+}
+.ManagerRoomsTable tbody tr:hover td {
+    background-color: transparent;
+}
+.ManagerRoomsId {
+    color: var(--text-secondary);
+}
+
+/* Column widths: ID | Room details (Seats + name) | Room type | Status | Actions.
+   Fixed layout keeps the inputs from stretching the table. */
+.ManagerRoomsTable th:nth-child(1),
+.ManagerRoomsTable td:nth-child(1) {
+    width: 64px;
+}
+/* Reduced Room Name / Details column width */
+.ManagerRoomsTable th:nth-child(2),
+.ManagerRoomsTable td:nth-child(2) {
+    width: 26%;
+}
+/* Increased Room Type column width to give selection dropdown more room */
+.ManagerRoomsTable th:nth-child(3),
+.ManagerRoomsTable td:nth-child(3) {
+    width: 32%;
+}
+.ManagerRoomsTable th:nth-child(4),
+.ManagerRoomsTable td:nth-child(4) {
+    width: 110px;
+}
+.ManagerRoomsTable th:nth-child(5),
+.ManagerRoomsTable td:nth-child(5) {
+    width: 260px;
+}
+
+/* Inputs inside the table */
+.ManagerRoomsTable input[type="text"],
+.ManagerRoomsTable select {
+    width: 100%;
+    min-width: 0;
+    min-height: 38px;
+    padding: 9px 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 13px;
+    text-overflow: ellipsis;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ManagerRoomsTable input[type="text"]:hover,
+.ManagerRoomsTable select:hover {
+    border-color: var(--border-hover);
+}
+.ManagerRoomsTable input[type="text"]:focus,
+.ManagerRoomsTable select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Room details cell: [Seats] [name input] */
+.ManagerRoomEditForm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+}
+.ManagerRoomEditForm .ManagerRoomsButton {
+    min-height: 38px;
+}
+.ManagerRoomEditForm input[type="text"] {
+    flex: 1 1 0;
+    width: auto;
+}
+
+/* Room status badges */
+.ManagerRoomsStatus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 7px 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-align: center;
+}
+.ManagerRoomsStatusActive {
+    border-color: var(--success);
+    background-color: var(--success-glow);
+    color: var(--success);
+}
+.ManagerRoomsStatusInactive {
+    border-color: var(--border-light);
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+}
+
+/* Table actions: Save | Deactivate | Delete */
+.ManagerRoomsActions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.ManagerRoomsActions form {
+    display: inline-flex;
+    margin: 0;
+}
+
+/* Empty states */
+.ManagerRoomsEmptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 130px;
+    padding: 52px 20px;
+    border: 1px dashed var(--border-light);
+    border-radius: 10px;
+    text-align: center;
+}
+.ManagerRoomsEmptyState h2,
+.ManagerRoomsEmptyState h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 17px;
+}
+.ManagerRoomsEmptyState p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Accessibility */
+.ManagerRoomsVisuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Legacy: old table-based seats page (safe to delete if that JSP is gone) */
+.ManagerSeatsGenerateForm {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    align-items: end;
+    gap: 20px;
+}
+.ManagerSeatsGenerateForm .ManagerRoomsField small {
+    margin-bottom: -4px;
+}
+.ManagerRoomsTable.ManagerSeatsTable th:nth-child(1),
+.ManagerRoomsTable.ManagerSeatsTable td:nth-child(1) {
+    width: 100px;
+}
+.ManagerRoomsTable.ManagerSeatsTable th:nth-child(2),
+.ManagerRoomsTable.ManagerSeatsTable td:nth-child(2) {
+    width: auto;
+}
+.ManagerRoomsTable.ManagerSeatsTable th:nth-child(3),
+.ManagerRoomsTable.ManagerSeatsTable td:nth-child(3) {
+    width: 120px;
+}
+.ManagerRoomsTable.ManagerSeatsTable th:nth-child(4),
+.ManagerRoomsTable.ManagerSeatsTable td:nth-child(4) {
+    width: 150px;
+}
+.ManagerRoomsTable.ManagerSeatsTable td:nth-child(1) small {
+    font-size: 11px;
+    font-weight: 400;
+}
+
+/* Responsive layout (largest to smallest) */
+@media (max-width: 1100px) {
+    .ManagerRoomCreateForm,
+    .ManagerSeatsGenerateForm {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .ManagerRoomCreateForm > .ManagerRoomsButton,
+    .ManagerSeatsGenerateForm > .ManagerRoomsButton {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+}
+@media (max-width: 1000px) {
+    .ManagerRoomsHeading {
+        flex-direction: column;
+    }
+}
+@media (max-width: 900px) {
+    /* Only very narrow screens fall back to horizontal scrolling */
+    .ManagerRoomsTable {
+        min-width: 760px;
+    }
+}
+@media (max-width: 700px) {
+    .ManagerRoomsPage {
+        padding: 18px;
+    }
+    .ManagerRoomsHeading h1,
+    .ManagerRoomsHeading h2 {
+        font-size: 24px;
+    }
+    .ManagerRoomsPanel {
+        padding: 16px;
+    }
+    .ManagerRoomsPanelHeading {
+        align-items: flex-start;
+    }
+    .ManagerRoomCreateForm,
+    .ManagerSeatsGenerateForm {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .ManagerRoomCreateForm > .ManagerRoomsButton,
+    .ManagerSeatsGenerateForm > .ManagerRoomsButton {
+        grid-column: auto;
+        justify-self: stretch;
+        width: 100%;
+    }
+    .ManagerRoomsBackButton {
+        width: 100%;
+    }
+    .ManagerRoomsTableWrapper {
+        max-height: 60vh;
+    }
+}
+@media (max-width: 480px) {
+    .ManagerRoomsHeading h1,
+    .ManagerRoomsHeading h2 {
+        font-size: 22px;
+    }
+    .ManagerRoomsPanelHeading {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .ManagerRoomsPanelHeading h2 {
+        font-size: 18px;
+    }
+    .ManagerRoomsCurrentTheater {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+    .ManagerRoomsNotice {
+        padding: 12px;
+    }
+    .ManagerRoomsButton {
+        white-space: normal;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .ManagerRoomsButton,
+    .ManagerRoomsTable tbody tr,
+    .ManagerRoomsField input,
+    .ManagerRoomsField select,
+    .ManagerRoomsTable input,
+    .ManagerRoomsTable select {
+        transition: none;
+    }
+    .ManagerRoomsButton:active:not(:disabled) {
+        transform: none;
+    }
+}

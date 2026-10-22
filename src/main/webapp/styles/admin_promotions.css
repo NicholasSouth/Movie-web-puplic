@@ -1,0 +1,25 @@
+/* admin_promotions.jsp - promotion hints and usage figures
+   Needs the :root variables from main_admin.css (or main.css) and the .admin-form rules from admin_theaters.css. */
+.admin-form-hint {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.admin-form .admin-check {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+.admin-promo-code {
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.admin-promo-description {
+    max-width: 320px;
+    overflow-wrap: anywhere;
+}
+.admin-promo-usage {
+    white-space: nowrap;
+}

@@ -1,0 +1,77 @@
+/* Base styles */
+body {
+    min-height: 100vh;
+}
+
+/* Page layout */
+.waiting-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: radial-gradient(
+        circle at top,
+        var(--surface-light) 0%,
+        var(--background) 50%
+    );
+}
+/* Container */
+.waiting-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+/* Title */
+.waiting-container h1 {
+    margin: 0 0 15px;
+    color: var(--text-primary);
+    font-size: 38px;
+}
+/* Message */
+.waiting-message {
+    margin: 0 0 30px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+/* Main button */
+.main-button {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    background-color: var(--accent);
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+}
+.main-button:hover {
+    background-color: var(--accent);
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+.main-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 550px) {
+    .waiting-page {
+        padding: 20px 15px;
+    }
+    .waiting-container {
+        padding: 30px 20px;
+    }
+    .waiting-container h1 {
+        font-size: 25px;
+    }
+}

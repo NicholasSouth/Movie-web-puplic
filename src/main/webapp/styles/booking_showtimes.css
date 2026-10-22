@@ -1,0 +1,455 @@
+/* Booking page layout — matching Layout1 structure (no right sidebar) */
+.BookingLayout {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid:
+        "header header" auto
+        "left body" 1fr
+        "footer footer" auto
+        / 220px minmax(0, 1fr);
+    gap: 8px;
+    overflow: hidden; /* Prevent scrolling the whole window, just like Layout1 */
+}
+
+/* Ensure components have the same rounded container styling */
+.BookingLayout .Header,
+.BookingLayout .LeftSidebar,
+.BookingLayout .BookingShowtimes,
+.BookingLayout .Footer {
+    border-radius: 12px;
+}
+
+/* Header & LeftSidebar match the base styles */
+.BookingLayout .Header {
+    grid-area: header;
+}
+.BookingLayout .LeftSidebar {
+    grid-area: left;
+}
+
+/* Main Body with internal scrollbar, matching .MainBody */
+.BookingLayout .BookingShowtimes {
+    grid-area: body;
+    min-width: 0;
+    padding: 25px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    overflow-y: auto; /* Scrollable content area */
+}
+
+/* Footer matching the base .footer styles */
+.BookingLayout .Footer {
+    grid-area: footer;
+}
+
+/* Custom scrollbar for booking body, matching MainBody scrollbars */
+.BookingLayout .BookingShowtimes::-webkit-scrollbar {
+    width: 10px;
+}
+.BookingLayout .BookingShowtimes::-webkit-scrollbar-track {
+    background: var(--background);
+}
+.BookingLayout .BookingShowtimes::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+}
+.BookingLayout .BookingShowtimes::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Booking Showtimes Page */
+.BookingShowtimes {
+	grid-area: body;
+	min-width: 0;
+	padding: 30px;
+	color: var(--text-primary);
+}
+.booking-page-heading {
+	margin-bottom: 25px;
+}
+.booking-page-heading .back-link {
+	display: inline-block;
+	margin-bottom: 15px;
+	color: var(--text-secondary);
+	text-decoration: none;
+	font-size: 14px;
+	transition: color 0.2s ease;
+}
+.booking-page-heading .back-link:hover {
+	color: var(--accent);
+}
+.booking-page-heading h1 {
+	margin: 0 0 8px;
+	font-size: 30px;
+	font-weight: 700;
+	color: var(--text-primary);
+}
+.booking-page-heading p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+/* Movie Summary */
+.booking-movie-summary {
+	display: flex;
+	align-items: center;
+	gap: 22px;
+	padding: 22px;
+	margin-bottom: 32px;
+	background-color: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+}
+.booking-movie-poster {
+	flex-shrink: 0;
+	width: 110px;
+	height: 155px;
+	overflow: hidden;
+	background-color: var(--surface-light);
+	border-radius: 8px;
+}
+.booking-movie-poster img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.booking-movie-poster .no-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	color: var(--text-secondary);
+	font-size: 12px;
+	text-align: center;
+}
+.booking-movie-info {
+	min-width: 0;
+}
+.booking-movie-info h2 {
+	margin: 0 0 14px;
+	color: var(--text-primary);
+	font-size: 23px;
+	line-height: 1.4;
+}
+.booking-movie-info p {
+	margin: 8px 0;
+	color: var(--text-secondary);
+	font-size: 14px;
+	line-height: 1.5;
+}
+.booking-movie-info strong {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+/* Selection Sections */
+.booking-selection-section {
+	margin-bottom: 35px;
+	padding: 24px;
+	background-color: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+}
+.booking-selection-section > h2 {
+	margin: 0 0 20px;
+	color: var(--text-primary);
+	font-size: 20px;
+	font-weight: 700;
+}
+
+/* Theater Selector */
+.theater-selection-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 520px;
+}
+.theater-selection-form label {
+	color: var(--text-secondary);
+	font-size: 14px;
+	font-weight: 600;
+}
+.theater-selection-form select {
+	width: 100%;
+	padding: 12px 14px;
+	color: var(--text-primary);
+	background-color: var(--surface-light);
+	border: 1px solid var(--border-light);
+	border-radius: 8px;
+	outline: none;
+	font-family: inherit;
+	font-size: 14px;
+	cursor: pointer;
+	transition: border-color 0.2s ease;
+}
+.theater-selection-form select:focus {
+	border-color: var(--accent);
+}
+.theater-selection-form select option {
+	color: var(--text-primary);
+	background-color: var(--surface-light);
+}
+
+/* Date Selector */
+.booking-date-selector {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+	padding: 3px 2px 12px;
+	overflow-x: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-thumb-hover) transparent;
+}
+.booking-date-selector::-webkit-scrollbar {
+	height: 5px;
+}
+.booking-date-selector::-webkit-scrollbar-track {
+	background: transparent;
+}
+.booking-date-selector::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb-hover);
+	border-radius: 10px;
+}
+.booking-date {
+	display: flex;
+	flex: 1 0 75px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	min-width: 70px;
+	padding: 14px 8px;
+	color: var(--text-secondary);
+	background-color: var(--surface-light);
+	border: 1px solid var(--border-light);
+	border-radius: 10px;
+	text-align: center;
+	text-decoration: none;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.booking-date:hover {
+	color: var(--text-primary);
+	border-color: var(--accent);
+	transform: translateY(-2px);
+}
+.booking-date span {
+	font-size: 12px;
+	font-weight: 500;
+}
+.booking-date strong {
+	color: var(--text-primary);
+	font-size: 23px;
+	line-height: 1;
+}
+.booking-date small {
+	font-size: 12px;
+}
+.booking-date.selected {
+	color: var(--text-on-accent);
+	background-color: var(--accent);
+	border-color: var(--accent);
+	box-shadow: 0 4px 12px var(--accent-glow);
+}
+.booking-date.selected span,
+.booking-date.selected strong,
+.booking-date.selected small {
+	color: var(--text-on-accent);
+}
+
+/* Showtime Heading */
+.selected-theater-heading {
+	margin-top: 28px;
+	margin-bottom: 18px;
+}
+.selected-theater-heading h2 {
+	margin: 0 0 7px;
+	color: var(--text-primary);
+	font-size: 20px;
+	font-weight: 700;
+}
+.selected-theater-heading p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 14px;
+}
+
+/* Showtime Cards */
+.booking-showtime-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.booking-showtime-card {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 17px 18px;
+	background-color: var(--surface-light);
+	border: 1px solid var(--border-light);
+	border-radius: 10px;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.booking-showtime-card:hover {
+	background-color: var(--surface-hover);
+	border-color: var(--border-hover);
+}
+.showtime-time {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	min-width: 90px;
+}
+.showtime-time strong {
+	color: var(--text-primary);
+	font-size: 19px;
+	font-weight: 700;
+}
+.showtime-time span {
+	color: var(--text-secondary);
+	font-size: 13px;
+}
+.showtime-status {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	margin-right: auto;
+	color: var(--text-secondary);
+	font-size: 13px;
+}
+.status-dot {
+	width: 7px;
+	height: 7px;
+	flex-shrink: 0;
+	background-color: var(--success);
+	border-radius: 50%;
+}
+.booking-showtime-card form {
+	margin: 0;
+}
+.choose-showtime-button {
+	padding: 10px 17px;
+	color: var(--text-on-accent);
+	background-color: var(--accent);
+	border: 1px solid var(--accent);
+	border-radius: 7px;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.choose-showtime-button:hover {
+	background-color: var(--accent-hover);
+	border-color: var(--accent-hover);
+	transform: translateY(-1px);
+}
+.choose-showtime-button:active {
+	transform: translateY(0);
+}
+
+/* Empty / Error Messages */
+.booking-message {
+	padding: 18px;
+	color: var(--text-secondary);
+	background-color: var(--surface-light);
+	border: 1px dashed var(--border-hover);
+	border-radius: 8px;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+	.BookingShowtimes {
+		padding: 24px;
+	}
+	.booking-selection-section {
+		padding: 20px;
+	}
+	.booking-date {
+		flex: 0 0 72px;
+	}
+}
+
+@media (max-width: 700px) {
+	.BookingLayout {
+        height: auto;
+        grid:
+            "header" auto
+            "leftSide" auto
+            "body" auto
+            "footer" auto
+            / 1fr;
+        overflow: visible;
+    }
+	.BookingShowtimes {
+		padding: 18px 14px;
+	}
+	.booking-page-heading h1 {
+		font-size: 25px;
+	}
+	.booking-movie-summary {
+		align-items: flex-start;
+		gap: 15px;
+		padding: 15px;
+	}
+	.booking-movie-poster {
+		width: 85px;
+		height: 125px;
+	}
+	.booking-movie-info h2 {
+		font-size: 18px;
+	}
+	.booking-selection-section {
+		padding: 16px 13px;
+	}
+	.booking-selection-section > h2,
+	.selected-theater-heading h2 {
+		font-size: 18px;
+	}
+	.booking-date {
+		flex-basis: 65px;
+		min-width: 65px;
+		padding: 12px 6px;
+	}
+	.booking-showtime-card {
+		flex-wrap: wrap;
+		gap: 12px;
+		padding: 14px;
+	}
+	.showtime-time {
+		min-width: 75px;
+	}
+	.showtime-status {
+		margin-right: 0;
+	}
+	.booking-showtime-card form {
+		width: 100%;
+	}
+	.choose-showtime-button {
+		width: 100%;
+		padding: 12px;
+	}
+}
+
+@media (max-width: 400px) {
+	.booking-movie-summary {
+		gap: 12px;
+	}
+	.booking-movie-poster {
+		width: 72px;
+		height: 108px;
+	}
+	.booking-movie-info h2 {
+		font-size: 16px;
+	}
+	.booking-movie-info p {
+		font-size: 12px;
+	}
+}

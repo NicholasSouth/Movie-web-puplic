@@ -1,0 +1,43 @@
+/* admin_ads.jsp - ad thumbnails, form hints and the image picker.
+   Needs the :root variables from main_admin.css and the .admin-form rules from admin_theaters.css. */
+.admin-form-hint {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.admin-form .admin-check {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+.admin-ad-thumb {
+    width: 160px;
+    height: 80px;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface-light);
+}
+.admin-ad-current {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.admin-ad-name {
+    max-width: 260px;
+    overflow-wrap: anywhere;
+    font-weight: 600;
+}
+.admin-ad-link {
+    max-width: 260px;
+    overflow-wrap: anywhere;
+    font-size: 12px;
+}
+.admin-ad-link a {
+    color: var(--text-secondary);
+}
+.admin-ad-link a:hover {
+    color: var(--text-primary);
+}

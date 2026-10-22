@@ -1,0 +1,153 @@
+/* Base styles */
+body {
+    min-height: 100vh;
+}
+
+/* Login page layout */
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: radial-gradient(
+        circle at top,
+        var(--surface-light) 0%,
+        var(--background) 45%
+    );
+}
+
+/* the whole login block contain the website name, the textboxes and the buttons */
+.login-container {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px var(--boxshadow);
+}
+/* Website name override inside login cuz in main.css we also have website-name */
+.login-container .website-name {
+    display: block;
+    margin-bottom: 35px;
+    font-size: 36px;
+    text-align: center;
+    transition: color 0.2s;
+}
+/* the subtitle guiding the user to sign in */
+.login-subtitle {
+    margin: 10px 0 30px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+/* error message when user type the wrong username/phone/email/password */
+.error-message {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    color: var(--danger);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* the login form include the textboxes, buttons and the remember me checkbox */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+/* remember me checkbox */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -3px;
+    font-size: 13px;
+}
+/* remember me checkbox's label */
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+/* when we click the check box it shows a --accent color tick */
+.remember-me input {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+/* the forgot password button is just a clickable text */
+.forgot-password {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.forgot-password:hover {
+    color: var(--accent);
+}
+/* Login button */
+.login-button {
+    width: 100%;
+    padding: 13px 15px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+}
+.login-button:hover {
+    background-color: var(--accent);
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+.login-button:active {
+    transform: translateY(0);
+}
+/* the register button is just a clickable text */
+.register-text {
+    margin: 25px 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-align: center;
+}
+.register-link {
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+}
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 500px) {
+    .login-page {
+        padding: 20px 15px;
+    }
+    .login-container {
+        padding: 30px 20px;
+    }
+    .login-container .website-name {
+        margin-bottom: 30px;
+        font-size: 23px;
+    }
+    .login-title {
+        font-size: 26px;
+    }
+    .login-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

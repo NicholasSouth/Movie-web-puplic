@@ -1,0 +1,624 @@
+/* Payment page */
+.PaymentPage {
+    min-height: 70vh;
+    padding: 40px 24px 65px;
+    background: var(--background);
+    color: var(--text-primary);
+}
+.PaymentContainer {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* Page heading */
+.PaymentHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.PaymentEyebrow,
+.PanelEyebrow {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+.PaymentHeading h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 800;
+}
+.PaymentSubtitle {
+    margin: 10px 0 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.PaymentSecureLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    white-space: nowrap;
+}
+/* Main payment layout */
+.PaymentLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+    gap: 24px;
+}
+/* the page is split into 2 panel, left is briefing the seats booked */
+/* right is listing the payment method */
+.PaymentPanel {
+    min-width: 0;
+    padding: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px var(--boxshadow);
+}
+/* the heading in each panel indicate which part is it */
+.PanelHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+.PanelHeading h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 750;
+}
+/* to show the booking_id in the left panel */
+.BookingId {
+    padding: 7px 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+}
+/* movie summary */
+.MovieSummary {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+/* this is the frame for the movie, because the database became too big
+we have to replace the movie's picture with emoji &#127916; of the ariel font
+which is the movie emoji */
+.MoviePlaceholder {
+    display: flex;
+    flex: 0 0 76px;
+    width: 76px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(
+        145deg,
+        var(--surface-hover),
+        var(--surface)
+    );
+    border: 1px solid var(--border-light);
+    font-size: 30px;
+}
+/* the text right next to the picture frame briefly show the movies' details */
+.MovieSummaryText {
+    min-width: 0;
+}
+.MovieSummaryText h3 {
+    margin: 0 0 9px;
+    font-size: 19px;
+    overflow-wrap: anywhere;
+}
+.MovieSummaryText p {
+    margin: 5px 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+.MovieSummaryText .ShowtimeDate {
+    margin-top: 12px;
+    color: var(--text-primary);
+}
+.MovieSummaryText .ShowtimeTime {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+/* this divider shows the seat chosen and the total price */
+.SummaryDivider {
+    height: 1px;
+    margin: 24px 0;
+    background: var(--border-light);
+}
+/* Promotion code showing */
+.PromotionRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px dashed var(--border-hover);
+    border-radius: 10px;
+    background: var(--surface-light);
+}
+.PromotionRow span {
+    color: var(--text-secondary);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.PromotionRow span strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+.PromotionDiscount {
+    color: var(--success);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+}
+/* Seat summary */
+.SeatSummaryHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.SeatSummaryHeading h3 {
+    margin: 0;
+    font-size: 15px;
+}
+.SeatSummaryHeading > span {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+.SeatList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.SeatItem,
+.SeatItemInfo {
+    display: flex;
+    align-items: center;
+}
+.SeatItem {
+    justify-content: space-between;
+    gap: 12px;
+}
+.SeatItemInfo {
+    min-width: 0;
+    gap: 12px;
+}
+.SeatLabel {
+    display: inline-flex;
+    min-width: 42px;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 7px;
+    border: 1px solid var(--border-hover);
+    border-radius: 7px;
+    background: var(--surface-light);
+    font-size: 13px;
+    font-weight: 800;
+}
+.SeatItemInfo > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+.SeatItemInfo strong {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+.SeatSubtext {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+/* price */
+.SeatPrice {
+    font-size: 13px;
+    font-weight: 650;
+    text-align: right;
+    white-space: nowrap;
+}
+/* empty seat incase bugs */
+.EmptySeats {
+    color: var(--danger);
+    font-size: 13px;
+}
+/* Total */
+.TotalRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+.TotalRow > span {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.TotalRow strong {
+    color: var(--text-primary);
+    font-size: clamp(18px, 2.5vw, 23px);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+.BookingFootnote {
+    margin: 16px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+/* VISA */
+/* The logo keeps the official VISA colors in every theme (--visa-* in main.css):
+   white plate, blue italic wordmark and the gold underline. */
+.VisaLogo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px 8px;
+    border-radius: 6px;
+    background: var(--visa-white);
+    color: var(--visa-blue);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    box-shadow: 0 2px 6px var(--boxshadow);
+}
+.VisaLogo::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    bottom: 3px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--visa-gold);
+}
+.PaymentMethodDescription {
+    margin: -7px 0 20px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+.VisaCardList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.VisaCardOption {
+    display: block;
+    cursor: pointer;
+}
+.VisaCardOption > input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+.VisaCardVisual {
+    display: flex;
+    min-height: 155px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 17px 19px;
+    border: 1px solid var(--border-hover);
+    border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        var(--surface-light),
+        var(--surface) 70%
+    );
+    transition:
+        border-color 0.18s,
+        box-shadow 0.18s,
+        transform 0.18s;
+}
+.VisaCardOption:hover .VisaCardVisual {
+    border-color: var(--border-focus);
+}
+.VisaCardOption > input:checked + .VisaCardVisual {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.VisaCardOption > input:focus-visible + .VisaCardVisual {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+}
+/* the card top line is the part containing the visa logo and the cardchip */
+.CardTopLine,
+.CardBottomLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+/* the card chip: gold plate with the little contact lines */
+.CardChip {
+    position: relative;
+    display: block;
+    width: 34px;
+    height: 25px;
+    overflow: hidden;
+    border: 1px solid var(--chip-dark);
+    border-radius: 5px;
+    background: linear-gradient(
+        135deg,
+        var(--chip-light),
+        var(--chip-dark)
+    );
+}
+.CardChip::before,
+.CardChip::after {
+    content: "";
+    position: absolute;
+    border: 0 solid var(--chip-dark);
+    opacity: 0.6;
+}
+/* two vertical lines */
+.CardChip::before {
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+/* one horizontal line */
+.CardChip::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top-width: 1px;
+}
+.CardNumber {
+    margin: 16px 0;
+    font-size: clamp(16px, 2vw, 19px);
+    font-weight: 650;
+    letter-spacing: 1.2px;
+    overflow-wrap: anywhere;
+}
+/* this is the expired date text */
+.CardBottomLine {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+/* Demo payment notice */
+.DemoPaymentNotice {
+    margin: 20px 0;
+    padding: 14px 15px;
+    border: 1px solid var(--pending);
+    border-radius: 10px;
+    background: var(--pending-glow);
+}
+.DemoPaymentNotice strong {
+    color: var(--pending);
+    font-size: 13px;
+}
+.DemoPaymentNotice p {
+    margin: 6px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+/* Payment button */
+.PayButton {
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 9px;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    font-size: 15px;
+    font-weight: 750;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.18s,
+        transform 0.18s,
+        opacity 0.18s;
+}
+.PayButton:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+.PayButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+.PayButton:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+.PaymentTerms {
+    margin: 12px 0 0;
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+/* No saved cards */
+.NoCardsNotice {
+    padding: 25px 15px;
+    border: 1px dashed var(--border-light);
+    border-radius: 12px;
+    text-align: center;
+}
+.NoCardsIcon {
+    font-size: 30px;
+}
+.NoCardsNotice h3 {
+    margin: 12px 0 8px;
+    font-size: 17px;
+}
+.NoCardsNotice p {
+    margin: 0 0 18px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+.SecondaryButton {
+    display: inline-flex;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 1px solid var(--border-hover);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+    transition:
+        border-color 0.18s,
+        background-color 0.18s;
+}
+.SecondaryButton:hover {
+    border-color: var(--accent);
+    background-color: var(--accent-glow);
+}
+/* after clicking pay, if success or fail, a message will appeare */
+.PaymentNotice {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: 22px;
+    padding: 17px 19px;
+    border: 1px solid;
+    border-radius: 12px;
+}
+.PaymentNotice h2 {
+    margin: 0 0 7px;
+    font-size: 18px;
+}
+.PaymentNotice p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+.PaymentNotice.PaymentNoticeError {
+    border-color: var(--danger);
+    background: var(--danger-glow);
+    color: var(--danger);
+}
+.PaymentNotice.PaymentNoticeSuccess {
+    border-color: var(--success);
+    background: var(--success-glow);
+    color: var(--success);
+}
+.TransactionCode {
+    overflow-wrap: anywhere;
+}
+.TransactionCode strong {
+    color: var(--text-primary);
+}
+.PaymentUnavailableText {
+    padding: 14px;
+    border-radius: 8px;
+    background: var(--surface-light);
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+/* after successfully paid, on the right panel, this is what being shown
+showing payment method and amount paid */
+.PaymentSuccessDetails {
+    margin: 22px 0;
+}
+.PaymentSuccessDetails p {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--success);
+    font-size: 13px;
+}
+.PaymentSuccessDetails strong {
+    color: var(--success);
+}
+.SuccessReturnButton {
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    .PaymentLayout {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 540px) {
+    .PaymentPage {
+        padding: 26px 14px 42px;
+    }
+    .PaymentHeading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .PaymentPanel {
+        padding: 19px;
+    }
+    .MoviePlaceholder {
+        flex-basis: 60px;
+        width: 60px;
+        height: 82px;
+    }
+    .MovieSummaryText h3 {
+        font-size: 16px;
+    }
+    .SeatPrice {
+        font-size: 12px;
+    }
+    .PaymentSecureLabel {
+        font-size: 12px;
+    }
+    .PaymentNotice {
+        padding: 15px;
+    }
+    .CardNumber {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+    }
+}
+
+/* Automatic discounts (weekday / off-hour) already included in the price, shown above the total */
+.AutoDiscountNotice {
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--success-border);
+    border-radius: 10px;
+    background: var(--success-glow);
+}
+.AutoDiscountNotice strong {
+    color: var(--success);
+    font-size: 13px;
+}
+.AutoDiscountNotice ul {
+    margin: 6px 0 0;
+    padding-left: 18px;
+    color: var(--text-primary);
+    font-size: 12px;
+    line-height: 1.7;
+}

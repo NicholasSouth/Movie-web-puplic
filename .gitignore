@@ -1,0 +1,9 @@
+  **/EmailService.java
+  **/DBConnection.java
+  bin/
+  build/
+  target/
+  .settings/
+  **/WEB-INF/classes/
+  .metadata/
+  Servers/

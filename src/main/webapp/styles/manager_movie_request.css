@@ -1,0 +1,59 @@
+/* Request a movie: only what manager_showtimes.css does not already give us */
+
+.mr-wide {
+    grid-column: 1 / -1;
+}
+.mr-required {
+    color: var(--danger);
+}
+.mr-optional {
+    margin-left: 6px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 400;
+}
+.showtimes-input-group textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.showtimes-input-group textarea::placeholder {
+    color: var(--text-secondary);
+}
+.showtimes-input-group textarea:hover {
+    border-color: var(--border-hover);
+}
+.showtimes-input-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.mr-reply-note {
+    margin: 22px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+.mr-errors {
+    margin: 6px 0 0;
+    padding-left: 20px;
+}
+.showtimes-form-actions .showtimes-button[disabled] {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+@media (max-width: 700px) {
+    .mr-wide {
+        grid-column: auto;
+    }
+}

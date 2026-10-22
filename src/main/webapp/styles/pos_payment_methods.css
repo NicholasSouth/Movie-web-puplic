@@ -1,0 +1,366 @@
+.payment-method-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px;
+}
+
+/* Page header */
+.payment-method-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 28px;
+}
+.payment-method-header > div {
+    min-width: 0;
+}
+.payment-method-breadcrumb {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+.payment-method-header h2 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 700;
+}
+.payment-method-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Error and success messages */
+.error-message {
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    background-color: var(--danger-glow);
+    color: var(--danger);
+    font-size: 14px;
+    font-weight: bold;
+}
+.success-message {
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    border: 1px solid var(--success);
+    border-radius: 8px;
+    background-color: var(--success-glow);
+    color: var(--success);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* input card number and expire date section */
+.payment-section {
+    margin-bottom: 30px;
+}
+.payment-section-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Saved visa: the card picture on the left, the deactivate button on the right */
+.payment-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+.payment-card:last-child {
+    margin-bottom: 0;
+}
+.payment-card-action {
+    flex-shrink: 0;
+}
+
+/* The card picture. Same look as payment_methods.css (user mode):
+   dark gradient plate, gold chip, white VISA logo and the masked number. */
+.visa-card {
+    display: flex;
+    flex: 0 1 380px;
+    min-width: 0;
+    min-height: 155px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 17px 19px;
+    border: 1px solid var(--border-hover);
+    border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        var(--surface-light),
+        var(--surface) 70%
+    );
+    box-shadow: 0 8px 20px var(--boxshadow);
+}
+.visa-card-top,
+.visa-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+/* Card chip: gold plate with the little contact lines */
+.visa-chip {
+    position: relative;
+    display: block;
+    width: 34px;
+    height: 25px;
+    overflow: hidden;
+    border: 1px solid var(--chip-dark);
+    border-radius: 5px;
+    background: linear-gradient(
+        135deg,
+        var(--chip-light),
+        var(--chip-dark)
+    );
+}
+.visa-chip::before,
+.visa-chip::after {
+    content: "";
+    position: absolute;
+    border: 0 solid var(--chip-dark);
+    opacity: 0.6;
+}
+/* two vertical lines */
+.visa-chip::before {
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+/* one horizontal line */
+.visa-chip::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top-width: 1px;
+}
+/* VISA logo keeps the official colors in every theme (--visa-* in main_manager.css) */
+.visa-logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px 8px;
+    border-radius: 6px;
+    background: var(--visa-white);
+    color: var(--visa-blue);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    box-shadow: 0 2px 6px var(--boxshadow);
+}
+.visa-logo::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    bottom: 3px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--visa-gold);
+}
+.visa-card-number {
+    margin: 16px 0;
+    color: var(--text-primary);
+    font-size: clamp(16px, 2vw, 19px);
+    font-weight: 650;
+    letter-spacing: 1.2px;
+    overflow-wrap: anywhere;
+}
+.visa-card-bottom {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+/* deactivate button */
+.payment-delete-button {
+    min-width: 110px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    background-color: var(--background);
+    color: var(--danger);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        color 0.2s;
+}
+.payment-delete-button:hover {
+    background-color: var(--danger-glow);
+    border-color: var(--danger);
+    color: var(--danger);
+}
+/* no visa added state */
+.no-payment-method {
+    padding: 25px 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-align: center;
+}
+.no-payment-method p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* the form containing the two textboxes to add card number and expire date */
+.payment-form-card {
+    padding: 25px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+.payment-form-description {
+    margin: 0 0 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Input group (main_manager.css does not define it, main.css does) */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.input-group label {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: bold;
+}
+.input-group input,
+.payment-form-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    background-color: var(--background);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-group input::placeholder,
+.payment-form-input::placeholder {
+    color: var(--text-secondary);
+}
+.input-group input:hover,
+.payment-form-input:hover {
+    border-color: var(--border-hover);
+}
+.input-group input:focus,
+.payment-form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Simulation notice cuz this visa thing is fake */
+.payment-information {
+    padding: 15px 18px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+.payment-information p {
+    margin: 0 0 4px;
+}
+.payment-information p:last-child {
+    margin-bottom: 0;
+}
+.payment-information strong {
+    color: var(--text-primary);
+}
+/* Submit visa button */
+.payment-form-actions {
+    display: flex;
+    justify-content: flex-start;
+}
+.payment-submit-button {
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        border-color 0.2s;
+}
+.payment-submit-button:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+    .payment-method-container {
+        padding: 18px;
+        max-width: none;
+    }
+    .payment-card {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .visa-card {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    .payment-card-action {
+        width: 100%;
+    }
+    .payment-delete-button {
+        width: 100%;
+    }
+}
+@media (max-width: 400px) {
+    .payment-form-card {
+        padding: 15px;
+    }
+    .visa-card-number {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+    }
+}

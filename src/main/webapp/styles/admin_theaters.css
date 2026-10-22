@@ -1,0 +1,23 @@
+/* admin_theaters.jsp - theater create/edit form
+   Needs the :root variables from main_admin.css (or main.css). */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 760px;
+}
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+.admin-form textarea.admin-input {
+    resize: vertical;
+}
+.admin-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+}

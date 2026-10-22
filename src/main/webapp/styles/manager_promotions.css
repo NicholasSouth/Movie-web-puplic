@@ -1,0 +1,544 @@
+/* Manager promotions container */
+.PromotionPage {
+    width: 100%;
+    max-width: 1400px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 28px;
+    color: var(--text-primary);
+}
+.PromotionPage *,
+.PromotionPage *::before,
+.PromotionPage *::after {
+    box-sizing: border-box;
+}
+.PromotionPage input,
+.PromotionPage select,
+.PromotionPage textarea,
+.PromotionPage button {
+    font-family: inherit;
+}
+
+/* Page header */
+.PromotionPageHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 28px;
+}
+.PromotionPageHeader > div {
+    min-width: 0;
+}
+.PromotionBreadcrumb {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+.PromotionPageHeader h1,
+.PromotionPageHeader h2 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 700;
+}
+.PromotionPageHeader p,
+.PromotionSubtitle {
+    max-width: 650px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Notices */
+.PromotionNotice {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-radius: 8px;
+    background-color: var(--surface);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+.PromotionNoticeError {
+    border-left-color: var(--danger);
+    color: var(--danger);
+}
+.PromotionNoticeSuccess {
+    border-left-color: var(--success);
+    color: var(--success);
+}
+
+/* Panels */
+.PromotionPanel {
+    min-width: 0;
+    margin-bottom: 28px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background-color: var(--surface);
+}
+.PromotionPanelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+.PromotionPanelHeader h2 {
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+.PromotionPanelHeader p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+.PromotionTotal {
+    flex-shrink: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+}
+.PromotionTotal span {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.PromotionTotal strong {
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+/* Create form */
+.PromotionForm {
+    width: 100%;
+}
+.PromotionFormGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+.PromotionFormGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+.PromotionFormFull {
+    grid-column: 1 / -1;
+}
+.PromotionFormGroup > label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.PromotionFormGroup input[type="text"],
+.PromotionFormGroup input[type="number"],
+.PromotionFormGroup input[type="datetime-local"],
+.PromotionFormGroup textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.PromotionFormGroup textarea {
+    min-height: 90px;
+    line-height: 1.6;
+    resize: vertical;
+}
+.PromotionFormGroup input::placeholder,
+.PromotionFormGroup textarea::placeholder {
+    color: var(--text-secondary);
+}
+.PromotionFormGroup input:hover,
+.PromotionFormGroup textarea:hover {
+    border-color: var(--border-hover);
+}
+.PromotionFormGroup input:focus,
+.PromotionFormGroup textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.PromotionFormGroup small {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Initial status checkbox
+   Written as ".PromotionFormGroup > .PromotionCheckboxLabel" so it beats
+   ".PromotionFormGroup > label" above (same element, more specific selector wins). */
+.PromotionFormGroup > .PromotionCheckboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.PromotionFormGroup > .PromotionCheckboxLabel:hover {
+    border-color: var(--border-hover);
+}
+.PromotionCheckboxLabel input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+/* Form actions */
+.PromotionFormActions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
+
+/* Buttons */
+.PromotionButton {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--surface-light);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.PromotionButton:hover {
+    border-color: var(--border-hover);
+    background-color: var(--surface-hover);
+}
+.PromotionButton:active {
+    transform: scale(0.98);
+}
+.PromotionButton:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+.PromotionButtonPrimary {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+}
+.PromotionButtonPrimary:hover {
+    border-color: var(--accent-hover);
+    background-color: var(--accent-hover);
+}
+.PromotionButtonSecondary {
+    border-color: var(--border-light);
+    background-color: var(--surface-light);
+}
+
+/* Empty state */
+.PromotionEmptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 130px;
+    padding: 52px 20px;
+    border: 1px dashed var(--border-light);
+    border-radius: 10px;
+    text-align: center;
+}
+.PromotionEmptyState h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 17px;
+}
+.PromotionEmptyState p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Promotion table wrapper */
+.PromotionTableWrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    max-height: 65vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.PromotionTableWrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 9px;
+}
+.PromotionTableWrapper::-webkit-scrollbar-track {
+    background-color: var(--background);
+}
+.PromotionTableWrapper::-webkit-scrollbar-thumb {
+    border: 2px solid var(--background);
+    border-radius: 10px;
+    background-color: var(--scrollbar-thumb);
+}
+.PromotionTableWrapper::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+}
+
+/* Promotion table */
+.PromotionTable {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 12px;
+    text-align: left;
+}
+/* Column widths */
+.PromotionTable th:nth-child(1),
+.PromotionTable td:nth-child(1) {
+    width: 6%;
+}
+.PromotionTable th:nth-child(2),
+.PromotionTable td:nth-child(2) {
+    width: 28%;
+}
+.PromotionTable th:nth-child(3),
+.PromotionTable td:nth-child(3) {
+    width: 9%;
+}
+.PromotionTable th:nth-child(4),
+.PromotionTable td:nth-child(4) {
+    width: 32%;
+}
+.PromotionTable th:nth-child(5),
+.PromotionTable td:nth-child(5) {
+    width: 11%;
+}
+.PromotionTable th:nth-child(6),
+.PromotionTable td:nth-child(6) {
+    width: 14%;
+}
+/* Table cells */
+.PromotionTable th,
+.PromotionTable td {
+    padding: 12px 8px;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+.PromotionTable th:last-child,
+.PromotionTable td:last-child {
+    border-right: none;
+}
+.PromotionTable tbody tr:last-child td {
+    border-bottom: none;
+}
+/* Keep the header visible while scrolling vertically */
+.PromotionTable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--surface);
+}
+/* Promotion code and description */
+.PromotionDetails strong,
+.PromotionDetails span {
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+.PromotionDetails span {
+    margin-top: 4px;
+    color: var(--text-secondary);
+}
+/* Validity dates */
+.PromotionValidity {
+    overflow-wrap: anywhere;
+}
+
+/* Status badge */
+.PromotionStatus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+.PromotionStatusActive {
+    border-color: var(--success);
+    background-color: var(--success-glow);
+    color: var(--success);
+}
+.PromotionStatusScheduled {
+    border-color: var(--pending);
+    background-color: var(--pending-glow);
+    color: var(--pending);
+}
+.PromotionStatusExpired {
+    border-color: var(--danger);
+    background-color: var(--danger-glow);
+    color: var(--danger);
+}
+.PromotionStatusInactive {
+    border-color: var(--border-light);
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+}
+
+/* Pagination */
+.PromotionPagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+}
+.PromotionPageLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    font-size: 13px;
+    text-decoration: none;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.PromotionPageLink:hover {
+    border-color: var(--accent);
+    background-color: var(--accent-glow);
+}
+.PromotionPageLink:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+.PromotionPageActive,
+.PromotionPageActive:hover {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-weight: 700;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+    .PromotionPageHeader {
+        flex-direction: column;
+    }
+}
+@media (max-width: 700px) {
+    .PromotionPage {
+        padding: 18px;
+    }
+    .PromotionPageHeader h1,
+    .PromotionPageHeader h2 {
+        font-size: 24px;
+    }
+    .PromotionPanel {
+        padding: 16px;
+    }
+    .PromotionPanelHeader {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .PromotionFormGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .PromotionFormActions {
+        flex-direction: column-reverse;
+    }
+    .PromotionFormActions .PromotionButton {
+        width: 100%;
+    }
+    .PromotionTableWrapper {
+        max-height: 60vh;
+    }
+    .PromotionPagination {
+        gap: 6px;
+    }
+    .PromotionPageLink {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 7px 9px;
+    }
+}
+@media (max-width: 480px) {
+    .PromotionPageHeader h1,
+    .PromotionPageHeader h2 {
+        font-size: 22px;
+    }
+    .PromotionPanelHeader h2 {
+        font-size: 18px;
+    }
+    .PromotionNotice {
+        padding: 12px;
+    }
+}

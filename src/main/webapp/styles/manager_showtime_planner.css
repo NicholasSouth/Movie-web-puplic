@@ -1,0 +1,377 @@
+/* Budget showtime planner: only what manager_showtimes.css does not already give us */
+
+.showtimes-header > .showtimes-button {
+    flex-shrink: 0;
+}
+
+/* Rooms picker */
+.planner-rooms {
+    margin-top: 22px;
+}
+.planner-room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+}
+.planner-room {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.planner-room:hover {
+    border-color: var(--border-hover);
+}
+.planner-room input {
+    width: auto;
+    min-height: 0;
+    accent-color: var(--accent);
+}
+.planner-room-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.planner-room-seats {
+    color: var(--text-secondary);
+    font-size: 11px;
+    white-space: nowrap;
+}
+.planner-room.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Daily window */
+.planner-time-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.planner-time-row span {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+/* Messages */
+.showtimes-message.planner-warning {
+    border-left-color: var(--pending);
+    color: var(--pending);
+}
+.showtimes-message.planner-info {
+    border-left-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* Summary tiles */
+.planner-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+}
+.planner-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--background);
+}
+.planner-stat-label {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+.planner-stat-value {
+    color: var(--text-primary);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+.planner-stat-unit {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+.planner-stat-profit {
+    border-color: var(--success);
+    background-color: var(--success-glow);
+}
+.planner-stat-profit .planner-stat-value {
+    color: var(--success);
+}
+.planner-stat-profit.is-negative {
+    border-color: var(--danger);
+    background-color: var(--danger-glow);
+}
+.planner-stat-profit.is-negative .planner-stat-value {
+    color: var(--danger);
+}
+
+/* Count controls */
+.planner-adjust {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--background);
+}
+.planner-adjust-count {
+    flex: 0 0 170px;
+}
+#countRange {
+    flex: 1 1 220px;
+    min-width: 160px;
+    margin-bottom: 12px;
+    accent-color: var(--accent);
+}
+.planner-adjust-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.planner-hint {
+    margin: 12px 0 22px;
+}
+
+/* Days */
+.planner-day {
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--surface);
+}
+.planner-day > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.planner-day-meta {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 400;
+}
+.planner-day[open] > summary {
+    border-bottom: 1px solid var(--border);
+}
+.planner-table-wrapper {
+    max-height: 340px;
+    border: none;
+    border-radius: 0 0 10px 10px;
+}
+.planner-table {
+    min-width: 560px;
+}
+.planner-table th,
+.planner-table td {
+    padding: 11px 16px;
+}
+.planner-table th:first-child,
+.planner-table td:first-child {
+    width: 44px;
+}
+.planner-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+.planner-num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Confirm */
+.planner-confirm-note {
+    margin: 12px 0 0;
+    text-align: right;
+    color: var(--success);
+    font-size: 13px;
+}
+.planner-confirm-note.is-error {
+    color: var(--danger);
+}
+#btnConfirm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* History page */
+.planner-link {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+.planner-link:hover {
+    text-decoration: underline;
+}
+.planner-profit {
+    color: var(--success);
+    font-weight: 700;
+}
+.planner-table-wide {
+    min-width: 1000px;
+}
+.showtimes-status.status-removed {
+    border-color: var(--danger);
+    background-color: var(--danger-glow);
+    color: var(--danger);
+}
+
+@media (max-width: 1000px) {
+    .planner-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 700px) {
+    .planner-stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .planner-adjust-count {
+        flex: 1 1 100%;
+    }
+    .planner-confirm-note {
+        text-align: left;
+    }
+}
+
+/* Delete plan button sits next to the other header links */
+.planner-inline-form {
+    display: inline-flex;
+    margin: 0 0 0 8px;
+    vertical-align: middle;
+}
+.showtimes-header .planner-inline-form .showtimes-button-danger {
+    min-height: 42px;
+}
+
+/* Delete picker */
+.planner-delete-bar {
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.planner-delete-count {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.planner-confirm-note.planner-left {
+    text-align: left;
+    margin: 0 0 16px;
+}
+#btnDelete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.planner-row-locked td {
+    opacity: 0.75;
+    background-color: var(--pending-glow);
+}
+.planner-table input[type="checkbox"]:disabled,
+.showtimes-table input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+.showtimes-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+}
+.showtimes-status.status-locked {
+    border-color: var(--pending);
+    background-color: var(--pending-glow);
+    color: var(--pending);
+}
+
+/* Delete-plan pop-up */
+.planner-dialog {
+    width: min(860px, 94vw);
+    max-height: 90vh;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+.planner-dialog[open] {
+    display: flex;
+}
+.planner-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+.planner-dialog form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 90vh;
+}
+.planner-dialog-head {
+    padding: 22px 24px 8px;
+}
+.planner-dialog-head h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+.planner-dialog-head p {
+    margin: 0 0 14px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+.planner-dialog-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 8px 24px 12px;
+    font-size: 13px;
+}
+.planner-dialog-list {
+    flex: 1;
+    min-height: 120px;
+    margin: 0 24px;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.planner-dialog-list .showtimes-table {
+    min-width: 560px;
+}
+.planner-dialog-list thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.planner-dialog .planner-confirm-note {
+    margin: 12px 24px 0;
+}
+.planner-dialog-foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 24px 22px;
+}

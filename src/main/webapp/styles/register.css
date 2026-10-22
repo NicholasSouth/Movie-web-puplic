@@ -1,0 +1,174 @@
+/* Base styles */
+body {
+    min-height: 100vh;
+}
+
+/* Page layout */
+.register-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: radial-gradient(
+        circle at top,
+        var(--surface-light) 0%,
+        var(--background) 50%
+    );
+}
+
+/* Container */
+.register-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px var(--boxshadow);
+}
+/* Website name override */
+.register-container .website-name {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 36px;
+    text-align: center;
+    transition: color 0.2s;
+}
+/* Titles and subtitles */
+.register-container h1 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 28px;
+    text-align: center;
+}
+.register-subtitle {
+    margin: 10px 0 30px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+/* Server messages */
+.error-message {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background-color: var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    color: var(--danger);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Register form */
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+/* to notify user that email/username is forced, phone is optional */
+.contact-note {
+    margin: -5px 0 20px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+/* manager checkbox to notify admin */
+.manager-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 14px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.manager-option:hover {
+    border-color: var(--border-hover);
+}
+.manager-option input {
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+.manager-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.manager-text strong {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+.manager-text small {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.4;
+}
+/* Register button */
+.register-button {
+    width: 100%;
+    padding: 13px 15px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+}
+.register-button:hover {
+    background-color: var(--accent);
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+.register-button:active {
+    transform: translateY(0);
+}
+/* the clickable back to login text */
+.login-text {
+    margin: 25px 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-align: center;
+}
+.login-link {
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 550px) {
+    .register-page {
+        padding: 20px 15px;
+    }
+    .register-container {
+        padding: 30px 20px;
+    }
+    .register-container .website-name {
+        font-size: 30px;
+    }
+    .register-container h1 {
+        font-size: 25px;
+    }
+    .verification-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .send-button {
+        width: 100%;
+        padding: 12px;
+    }
+}

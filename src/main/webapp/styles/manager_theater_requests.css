@@ -1,0 +1,179 @@
+/* Manager theater requests page. Colors come from the :root variables in main_manager.css only. */
+.manager-requests-main {
+	text-align: left;
+}
+
+/* Back Link */
+.request-back-link {
+	flex-shrink: 0;
+	color: var(--text-secondary);
+	font-size: 13px;
+	text-decoration: none;
+}
+.request-back-link:hover {
+	color: var(--text-primary);
+}
+
+/* Alert Banners */
+.request-alert {
+	margin-bottom: 16px;
+	padding: 12px 16px;
+	border: 1px solid var(--border);
+	border-left-width: 4px;
+	border-radius: 8px;
+	background-color: var(--surface);
+	font-size: 13px;
+	line-height: 1.6;
+	text-align: left;
+}
+.request-alert-success {
+	border-left-color: var(--success);
+	color: var(--success);
+}
+.request-alert-error {
+	border-left-color: var(--danger);
+	color: var(--danger);
+}
+
+/* Request List & Row Layout */
+.request-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.request-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	align-items: center;
+	gap: 12px 16px;
+	padding: 14px 16px;
+	background-color: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+}
+.request-row-info h3 {
+	margin: 0 0 4px;
+	font-size: 15px;
+}
+.request-row-info p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-size: 12px;
+}
+
+/* Request Form Elements */
+.request-form {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.request-form input[type="text"] {
+	width: 240px;
+	max-width: 100%;
+	padding: 8px 10px;
+	background-color: var(--background);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	color: var(--text-primary);
+	font-size: 12px;
+}
+.request-form input[type="text"]:focus {
+	outline: none;
+	border-color: var(--border-focus);
+}
+.request-form button {
+	cursor: pointer;
+	border: none;
+	white-space: nowrap;
+}
+
+/* Buttons & Actions */
+.request-button-danger {
+	padding: 8px 12px;
+	background-color: transparent;
+	border: 1px solid var(--danger-border) !important;
+	border-radius: 6px;
+	color: var(--danger);
+	font-size: 13px;
+	font-weight: 600;
+}
+.request-button-danger:hover {
+	background-color: var(--danger-glow);
+}
+.request-button-link {
+	padding: 0;
+	background: none;
+	border: none;
+	color: var(--danger);
+	font-size: 12px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* Status Badges & Text */
+.request-waiting {
+	color: var(--text-secondary);
+	font-size: 12px;
+}
+.request-badge {
+	display: inline-block;
+	padding: 3px 10px;
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	font-size: 11px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+.request-badge-assigned {
+	background-color: var(--success-glow);
+	border-color: var(--success-border);
+	color: var(--success);
+}
+.request-badge-pending {
+	background-color: var(--pending-glow);
+	border-color: var(--pending);
+	color: var(--pending);
+}
+.request-badge-none {
+	background-color: var(--overlay-subtle);
+	color: var(--text-secondary);
+}
+
+/* Tables */
+.request-table-wrap {
+	overflow-x: auto;
+}
+.request-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+.request-table th,
+.request-table td {
+	padding: 10px 12px;
+	border-bottom: 1px solid var(--border);
+	text-align: left;
+	vertical-align: top;
+}
+.request-table th {
+	color: var(--text-secondary);
+	font-size: 12px;
+	font-weight: 600;
+}
+.request-review-note {
+	color: var(--text-secondary);
+	font-size: 12px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+	.request-row {
+		grid-template-columns: 1fr;
+	}
+	.request-form {
+		flex-wrap: wrap;
+	}
+	.request-form input[type="text"] {
+		width: 100%;
+	}
+}

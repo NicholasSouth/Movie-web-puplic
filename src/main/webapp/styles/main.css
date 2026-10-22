@@ -1,0 +1,716 @@
+/* Theme and variables
+   Keep this block identical to the :root in main.css (same names, same values),
+   so every theme works in both user mode and manager mode. */
+:root {
+    color-scheme: dark; /* makes native scrollbars, inputs and form controls match the theme (use "light" in light themes) */
+    --font-family: Consolas, Menlo, Monaco, "Liberation Mono", "Lucida Console", monospace; /* Global Font Family */
+    --background: #0D0F12;
+    --body-bg: #141414;
+    --surface: #16191E; /* lighter background to separate the objects */
+    --surface-light: #1D2127; /* even lighter background to separate the objects */
+    --surface-hover: #22252A; /* background when we hover */
+    --accent: #E50914; /* deep red highlight, often use for navigation bar */
+    --accent-glow: color-mix(in srgb, var(--accent) 15%, transparent); /* lighter transparent accent highlight */
+    --accent-border: color-mix(in srgb, var(--accent) 30%, transparent); /* transparent accent for soft borders */
+    --accent-hover: #C90812; /* solid accent button when hover */
+    --danger: #FF6B6B; /* warning red color */
+    --danger-glow: color-mix(in srgb, var(--danger) 12%, transparent); /* transparent danger background (error boxes) */
+    --danger-border: color-mix(in srgb, var(--danger) 35%, transparent); /* transparent danger border */
+    --text-on-danger: #0D0F12; /* text placed on top of a solid danger-colored background */
+    --overlay-backdrop: rgba(0, 0, 0, 0.65); /* dimmed background behind modals and popups */
+    --success: #4ADE80; /* successful color */
+    --success-glow: color-mix(in srgb, var(--success) 12%, transparent); /* transparent success background (alerts, badges) */
+    --success-border: color-mix(in srgb, var(--success) 35%, transparent); /* transparent success border */
+    --rating: #F5C542; /* star/rating gold color */
+    --text-on-success: #0D0F12; /* text placed on top of a solid success-colored background */
+    --seat-vip: #F4C95D; /* VIP seat color (gold) */
+    --seat-discount: #5EB6F2; /* discount seat color (sky blue) */
+    --seat-couple: #E88AC7; /* couple seat color (pink) */
+    --visa-blue: #1A1F71; /* VISA brand blue (brand colors stay the same in every theme) */
+    --visa-gold: #F7B600; /* VISA brand gold */
+    --visa-white: #FFFFFF; /* VISA logo background */
+    --chip-light: #F5DC8B; /* credit card chip, light gold */
+    --chip-dark: #B88A2E; /* credit card chip, dark gold */
+    --pending: #f3ce78; /* pending color */
+    --pending-glow: color-mix(in srgb, var(--pending) 12%, transparent); /* transparent pending background (notices, badges) */
+    --text-primary: #F5F5F7; /* normal text color */
+    --text-secondary: #8A8F99; /* immutable text color often for private button */
+    --text-on-accent: #FFFFFF; /* text/icons placed on top of an accent-colored background */
+    --border: #2C2C2C; /* normal border color */
+    --border-light: #3A3A3A; /* lighter border color */
+    --border-hover: #444444; /* border when hover */
+    --border-focus: #666666; /* border when focus, like when clicking textbox */
+    --overlay-faint: color-mix(in srgb, var(--text-primary) 3%, transparent); /* barely visible tint (active card in manager navigation) */
+    --overlay-subtle: color-mix(in srgb, var(--text-primary) 6%, transparent); /* faint tint over a surface (tag background) */
+    --overlay-hover: color-mix(in srgb, var(--text-primary) 12%, transparent); /* slightly stronger tint when hovering */
+    --scrollbar-thumb: #2C2C2C; /* the part of the scrollbar that we drag to move up/down */
+    --scrollbar-thumb-hover: #444444; /* that thing but hover */
+    --boxshadow: rgba(0, 0, 0, 0.5); /* box shadow color */
+    --icon-filter: brightness(0) invert(1); /* recolors black SVG/PNG icons; dark theme = white, light theme = brightness(0) */
+    --icon-filter-on-accent: brightness(0) invert(1); /* same, but for icons sitting on an accent background (match --text-on-accent) */
+    --qr-background: #FFFFFF; /* QR code backing, must stay light in every theme so the code can be scanned */
+}
+
+/* Base and reset styles */
+* {
+    box-sizing: border-box;
+}
+/* Force all form elements to inherit the global font */
+input, textarea, select, button {
+    font-family: inherit;
+}
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--body-bg);
+    color: var(--text-primary);
+}
+
+/* Layout structure */
+.Layout1 {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid:
+        "header header header" auto
+        "leftSide body rightSide" 1fr
+        "footer footer footer" auto
+        / 220px minmax(0, 1fr) 250px;
+    gap: 8px;
+    overflow: hidden;
+}
+.Header,
+.LeftSidebar,
+.MainBody,
+.RightSidebar,
+.footer {
+    border-radius: 12px;
+}
+
+/* Header and navigation */
+.Header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 25px;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    grid-area: header;
+}
+/* the clickable website's name */
+.website-name {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.website-name:hover {
+    color: var(--accent);
+}
+/* The movie search bar for quick search */
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.search-form {
+    width: 100%;
+    max-width: 800px; /* Increased from 600px to make it wider */
+    margin: 0;
+}
+.search-bar {
+    width: 100%;
+    max-width: 800px; /* Increased from 600px */
+    padding: 14px 20px; /* Increased padding for a taller, more prominent box */
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 16px; /* Increased font size */
+    outline: none;
+}
+.search-bar::placeholder {
+    color: var(--text-secondary);
+}
+.search-bar:focus {
+    border-color: var(--accent);
+}
+.header-menu {
+    position: relative;
+    flex-shrink: 0;
+}
+/* The menu . . . button */
+.menu-button {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.menu-button:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--accent);
+}
+.menu-button:active {
+    transform: scale(0.95);
+}
+.menu-dots {
+    font-size: 20px;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+/* the dropdown menu when click . . .  */
+.menu-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 250px;
+    padding: 10px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--boxshadow);
+    z-index: 1000;
+    display: none;
+}
+.menu-dropdown.show {
+    display: block;
+}
+/* The guest menu has different style than the logged in menu so have difference design */
+.guest-menu {
+    width: 100%;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+.menu-item:hover {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+/* the login logout setting icon */
+.menu-item-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+    filter: var(--icon-filter);
+    flex-shrink: 0;
+}
+.menu-divider {
+    height: 1px;
+    margin: 5px 0;
+    background-color: var(--border);
+}
+/* This is the login button when GUEST click menu button . . . */
+.login-item {
+    justify-content: center;
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-weight: bold;
+}
+.login-item:hover {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    opacity: 0.85;
+}
+/* When USER/MANAGER/ADMIN is in then there is the profile button and the logout button */
+.logout-item {
+    color: var(--danger);
+}
+.logout-item:hover {
+    color: var(--danger);
+}
+/* the profile card, user click it and is redirect to user_profile.jsp */
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.user-profile-link {
+    text-decoration: none;
+    color: inherit;
+}
+.user-profile-link:visited,
+.user-profile-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: var(--background);
+}
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+/* default avt with red bg and the full_name's inital incase no avt is shown */
+.default-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    font-size: 20px;
+    font-weight: bold;
+}
+.user-information {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+.user-name {
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+.user-role {
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+/* Left sidebar is the navigation bar*/
+.LeftSidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    background-color: var(--surface);
+    grid-area: leftSide;
+}
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.nav-item {
+    display: block;
+    padding: 12px 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 15px;
+}
+.nav-item:hover {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+/* When user is in page main/movies/theaters/... the navigation bar glow to indicate */
+.nav-item.active {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+}
+
+/* Main body and movie grid, movie grid is also used in movies.jsp */
+.MainBody {
+    padding: 25px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    overflow-y: auto;
+    grid-area: body;
+}
+.MainBody h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+.movie-card {
+    min-width: 0;
+    display: block;
+    background-color: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--text-primary);
+    transition: transform 0.2s ease;
+}
+.movie-card:hover {
+    transform: translateY(-5px);
+}
+.movie-poster-link {
+    display: block;
+}
+.movie-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+.movie-card-content {
+    min-width: 0;
+    padding: 12px;
+}
+.movie-card h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+.movie-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+.movie-card h3 a:hover {
+    color: var(--accent);
+}
+.movie-genres,
+.movie-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+.movie-genre,
+.movie-tag {
+    display: inline-block;
+    max-width: 100%;
+    padding: 4px 8px;
+    overflow: hidden;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 1.2;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.movie-genre {
+    border: 1px solid var(--accent-border);
+    background-color: var(--accent-glow);
+    color: var(--accent);
+}
+.movie-genre:hover {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+}
+.movie-tag {
+    border: 1px solid var(--border);
+    background-color: var(--overlay-subtle);
+    color: var(--text-secondary);
+}
+.movie-tag:hover {
+    border-color: var(--text-secondary);
+    background-color: var(--overlay-hover);
+    color: var(--text-primary);
+}
+
+/* Right sidebar are for ads */
+.RightSidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--surface);
+    grid-area: rightSide;
+    overflow-y: auto;
+}
+.ad {
+    width: 100%;
+    height: 150px;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.ad-link {
+    display: block;
+}
+.ad-link:hover {
+    opacity: 0.8;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    gap: 40px;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    grid-area: footer;
+}
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 40px;
+    border-right: 1px solid var(--border);
+    min-width: 0;
+}
+.footer-section:first-child {
+    flex: 2;
+}
+.footer-section:last-child {
+    border-right: none;
+}
+.footer-section h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+.footer-section p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+.footer-section a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+.footer-section a:hover {
+    color: var(--accent);
+}
+
+/* Some other components */
+/* for the password toggle button and the div contain it and the textbox next to it */
+/* Only the password toggle button is reusable, the div aint */
+/* Input groups - the textboxes with password toggle button */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.input-group label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+.input-group input {
+    width: 100%;
+    padding: 13px 15px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-group input::placeholder {
+    color: var(--text-secondary);
+}
+.input-group input:hover {
+    border-color: var(--border-hover);
+}
+.input-group input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.password-wrapper input {
+    flex: 1;
+    min-width: 0;
+}
+.password-toggle {
+    flex-shrink: 0;
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    flex: 0 0 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.password-toggle:hover {
+    background-color: var(--background);
+    border-color: var(--border-focus);
+    color: var(--text-primary);
+}
+.password-toggle.password-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.password-toggle.password-visible:hover {
+    background-color: var(--accent-glow);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+/* the verification section div */
+.verification-section {
+    margin-bottom: 25px;
+    padding: 16px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.verification-title {
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+.verification-note {
+    margin: 0 0 12px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.verification-row {
+    display: flex;
+    gap: 12px; /* Guaranteed minimum pixel gap between input and button */
+    align-items: stretch;
+}
+.verification-row input {
+    flex: 1;
+    min-width: 140px; /* Prevents the input from shrinking below 140px */
+    padding: 13px 15px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.verification-row input::placeholder {
+    color: var(--text-secondary);
+}
+.verification-row input:hover {
+    border-color: var(--border-hover);
+}
+.verification-row input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+/* Send Email Button */
+.send-button {
+    flex-shrink: 0;
+    min-width: 110px; /* Guarantees the button stays at least 110px wide so text never awkwardly wraps */
+    padding: 0 15px;
+    background-color: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+}
+.send-button:hover {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+}
+
+/* Scrollbars for main and right sidebar*/
+.MainBody::-webkit-scrollbar,
+.RightSidebar::-webkit-scrollbar {
+    width: 10px;
+}
+.MainBody::-webkit-scrollbar-track,
+.RightSidebar::-webkit-scrollbar-track {
+    background: var(--background);
+}
+.MainBody::-webkit-scrollbar-thumb,
+.RightSidebar::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+}
+.MainBody::-webkit-scrollbar-thumb:hover,
+.RightSidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Responsive media queries */
+@media (max-width: 900px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 700px) {
+    .Layout1 {
+        height: auto;
+        grid:
+            "header" auto
+            "leftSide" auto
+            "body" auto
+            "rightSide" auto
+            "footer" auto
+            / 1fr;
+        overflow: visible;
+    }
+    .Header {
+        padding: 12px 15px;
+        gap: 15px;
+    }
+    .website-name {
+        font-size: 20px;
+    }
+    .search-bar {
+        max-width: none;
+    }
+    .menu-dropdown {
+        width: 230px;
+    }
+    .LeftSidebar {
+        padding: 10px;
+    }
+    .sidebar-nav {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .nav-item {
+        white-space: nowrap;
+    }
+    .movie-grid {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+@media (max-width: 600px) {
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,48 @@
+/* admin_movies.jsp - poster thumbnails, genre/tag checkboxes, form hints.
+   Needs the :root variables from main_admin.css and the .admin-form rules from admin_theaters.css. */
+.admin-form-hint {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.admin-form .admin-check {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+.admin-movie-thumb {
+    width: 60px;
+    height: 90px;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--surface-light);
+}
+.admin-movie-name {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+.admin-check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--background);
+}
+.admin-check-group .admin-check {
+    margin: 0;
+}
+.admin-form textarea.admin-input {
+    min-height: 90px;
+    resize: vertical;
+    font-family: inherit;
+}
+.admin-movie-current {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
